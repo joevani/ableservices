@@ -11,8 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js','public/Nandova/js')
-   .sass('resources/sass/app.scss', 'public/css','public/Nandova/css');
+mix.js('resources/js/app.js', 'public/js','public/capstone/Template/assets/js')
+   .sass('resources/sass/app.scss', 'public/css','public/capstone/Template/assets/css');
 
 
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
