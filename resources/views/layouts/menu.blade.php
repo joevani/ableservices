@@ -58,11 +58,11 @@
 						<ul class="down_menu">
 								@if(Auth::user()->user_type=='management')
 							<li>
-								<a href="{{URL::to('memos/create')}}">Create Memo</a>
+								<a href="#">Create Memo</a>
 							</li>
 							@endif
 							<li>
-								<a href="{{URL::to('memos/list')}}">Memo List</a>
+								<a href="#">Memo List</a>
 							</li>
 						</ul>
 					</li>
@@ -70,17 +70,17 @@
             <a href="#"> <i class="fa fa-comments-o"></i> <span>My Messages </span> <span class="badge badge-pill badge-danger float-right">2</span> </a>
             <ul class="down_menu">
               <li>
-                <a href="{{URL::to('messages/create')}}">Create New</a>
+                <a href="#">Create New</a>
               </li>
               <li>
-                <a href="{{URL::to('messages/inbox')}}">Inbox </a>
-								<a href="{{URL::to('messages/sent')}}">Sent </a>
+                <a href="#">Inbox </a>
+								<a href="#">Sent </a>
               </li>
             </ul>
           </li>
 						@if(Auth::user()->user_type=='management')
 		          <li class="menu_sub">
-		            <a href="{{ URL::to('feedback')}}"> <i class="fa fa-newspaper-o"></i> <span>Client Feedbacks</span></a>
+		            <a href="#"> <i class="fa fa-newspaper-o"></i> <span>Client Feedbacks</span></a>
 		          </li>
 					@endif
           <li class="menu_sub">
