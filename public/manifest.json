@@ -1,36 +1,28 @@
 {
-  "short_name": "ABLE SERVICES",
-  "name": "ABLE",
-  "theme_color": "#fff",
-  "background_color": "#fff",
+  "name": "ABLE SERVICES",
+  "short_name": "ABLE",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
   "display": "standalone",
+  "Scope": "/",
+  "start_url": "/",
   "icons": [
     {
-      "src": "images/icons/icon-4x48.png",
-      "type": "image/png",
-      "sizes": "48x48"
-    },
-     {
       "src": "images/icons/icon-72x72.png",
-      "type": "image/png",
-      "sizes": "72x72"
+      "sizes": "72x72",
+      "type": "image/png"
     },
     {
       "src": "images/icons/icon-96x96.png",
-      "type": "image/png",
-      "sizes": "96x96"
+      "sizes": "96x96",
+      "type": "image/png"
     },
     {
-      "src": "images/icons/Icon-144.png",
-      "type": "image/png",
-      "sizes": "144x144"
-    },
-     {
-      "src": "images/icons/icon-192x192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src": "images/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
     }
+
   ],
-  "start_url": "/",
-  "orientation": "portrait"
+  "splash_pages": null
 }
