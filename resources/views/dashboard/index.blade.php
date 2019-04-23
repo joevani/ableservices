@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-12 mb-3">
             <div class="heading_view">
-              <h2>Categories</h2>
+              <h2>Quick Access</h2>
             </div>
           </div>
 <div class="col-12 d-flex flex-wrap plr">
@@ -28,8 +28,8 @@
             <div class="course_box">
               <a href="course-list.html">
                 <div class="icon_relative">
-                  <i class="la la-cubes" aria-hidden="true"></i>
-                  <span>architecture</span>
+                  <i class="la la-users" aria-hidden="true"></i>
+                  <span>Users</span>
                 </div>
 
               </a>
@@ -40,8 +40,8 @@
             <div class="course_box">
               <a href="course-list.html">
                 <div class="icon_relative">
-                  <i class="la la-bar-chart" aria-hidden="true"></i>
-                  <span>Business</span>
+                  <i class="la la-list" aria-hidden="true"></i>
+                  <span>Supervisor Assignment</span>
                 </div>
 
               </a>
@@ -53,7 +53,7 @@
               <a href="course-list.html">
                 <div class="icon_relative">
                   <i class="la la-flask" aria-hidden="true"></i>
-                  <span>Chemistry</span>
+                  <span>Team Lead Assignment</span>
                 </div>
 
               </a>
@@ -66,7 +66,7 @@
               <a href="course-list.html">
                 <div class="icon_relative">
                   <i class="la la-desktop" aria-hidden="true"></i>
-                  <span>Computer Sc.</span>
+                  <span>KDKS</span>
                 </div>
 
               </a>
@@ -74,56 +74,11 @@
           </div>
 
 
-          <div class="fl-col">
-            <div class="course_box">
-              <a href="course-list.html">
-                <div class="icon_relative">
-                  <i class="la la-diamond" aria-hidden="true"></i>
-                  <span>Design</span>
-                </div>
-
-              </a>
-            </div>
-          </div>
 
 
-          <div class="fl-col">
-            <div class="course_box">
-              <a href="course-list.html">
-                <div class="icon_relative">
-                  <i class="la la-sort-amount-asc" aria-hidden="true"></i>
-                    <span>Economics</span>
-                </div>
-
-              </a>
-            </div>
-          </div>
 
 
-          <div class="fl-col">
-            <div class="course_box">
-              <a href="course-list.html">
-                <div class="icon_relative">
-                  <i class="la la-institution" aria-hidden="true"></i>
-                    <span>History</span>
-                </div>
 
-              </a>
-            </div>
-          </div>
-
-
-          <div class="fl-col">
-            <div class="course_box">
-              <a href="course-list.html">
-                <div class="icon_relative">
-                  <i class="la la-cube" aria-hidden="true"></i>
-                  <span>Marketing</span>
-                </div>
-
-              </a>
-            </div>
-          </div>
           </div>
 
 

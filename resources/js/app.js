@@ -29,6 +29,7 @@ Vue.component('dashboard', require('./components/Dashboard.vue').default);
 Vue.component('user', require('./components/User.vue').default);
 Vue.component('category', require('./components/Categories.vue').default);
 Vue.component('supervisor', require('./components/Supervisor.vue').default);
+Vue.component('teamlead', require('./components/Teamlead.vue').default);
 
 
 import Notify from 'vue2-notify';

@@ -13,7 +13,7 @@
                                                     <i class="fa fa-angle-right"></i>
                                                 </li>
                                                 <li class="active">
-                                                    Supervisor Assignment
+                                                    Team Leaders Assignment
                                                 </li>
                                             </ol>
                                         </div>
@@ -44,17 +44,19 @@
                                                           <div id="msg"></div>
                                                           <hr>
                                                           <form>
-                                                            <div class="form-group">
-                                                              <label for="recipient-name" class="col-form-label">Supervisor Name </label>
-                                                              <select class="form-control" v-model="supervisor_id" >
-                                                                  <option v-for="supervisr in supervisors" v-bind:value="supervisr.id" >{{supervisr.name}}</option>
 
-                                                              </select>
-                                                            </div>
                                                             <div class="form-group">
                                                               <label for="recipient-name" class="col-form-label">Team Leader  </label>
                                                               <select class="form-control" v-model="teamlead_id">
                                                                     <option v-for="teamleaders in teamleaders" v-bind:value="teamleaders.id" >{{teamleaders.name}}</option>
+
+                                                              </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                              <label for="recipient-name" class="col-form-label">Worker </label>
+                                                              <select class="form-control" v-model="worker_id" >
+                                                                  <option v-for="supervisr in workers" v-bind:value="supervisr.id" >{{supervisr.name}}</option>
 
                                                               </select>
                                                             </div>
@@ -76,15 +78,13 @@
                                                         <tr>
                                                             <th>Name</th>
                                                             <th>Position</th>
-
-                                                            <th>Team Leaders List</th>
+                                                            <th>Worker List</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr v-for="supervisor in supervisors" :key="supervisor['id']">
+                                                        <tr v-for="supervisor in teamleaders" :key="supervisor['id']">
                                                             <td>{{supervisor.name}}</td>
                                                             <td>{{supervisor.user_type}}</td>
-
                                                             <td><button class="btn btn-info btn-sm" v-on:click="members(supervisor.id)"> <i class="fa fa-folder-open-o"></i></button></td>
                                                         </tr>
                                                     </tbody>
@@ -92,8 +92,7 @@
                                                         <tr>
                                                           <th>Name</th>
                                                           <th>Position</th>
-                                                        
-                                                          <th>Team Leaders List</th>
+                                                          <th>Worker List</th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
@@ -102,7 +101,7 @@
                                                     <div class="modal-dialog" role="document">
                                                       <div class="modal-content">
                                                         <div class="modal-header">
-                                                          <h5 class="modal-title" id="exampleModalLabel4">Team Leaders</h5>
+                                                          <h5 class="modal-title" id="exampleModalLabel4">Workers</h5>
                                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                           </button>
@@ -119,7 +118,7 @@
                                                                   </tr>
                                                               </thead>
                                                               <tbody>
-                                                                  <tr v-for="member in supervisor_member" :key="member['id']">
+                                                                  <tr v-for="member in workers_member" :key="member['id']">
                                                                       <td>{{member.name}}</td>
                                                                       <td>{{member.user_type}}</td>
                                                                       <td><button class="btn btn-sm btn-danger" v-on:click="remove(member.id)"><i class="fa fa-trash"></i></button></td>
@@ -168,9 +167,11 @@ export default {
               default_   : "about-1.jpg",
               is_reg     : "true",
               id         : "",
-              supervisor_id : "",
+              worker_id : "",
               teamlead_id : "",
               supervisor_member : {},
+              workers : {},
+              workers_member  : {}
       };
   },
   mounted() {
@@ -179,8 +180,8 @@ export default {
   },
   methods: {
       getUser(){
-          axios.get("/setup/supervisors/list").then(response => {
-                this.supervisors = response.data;
+          axios.get("/setup/teamleaders/workers").then(response => {
+                this.workers = response.data;
 
          });
       },
@@ -200,10 +201,7 @@ export default {
                          'id'  : id,
                         }
               ).then(response => {
-
                     count= response.data;
-
-
 
             },error => {
 
@@ -215,12 +213,12 @@ export default {
       },
       members(id){
           $('#teamleaders').modal('show');
-        axios.post('/setup/supervisors/members',
+        axios.post('/setup/teamleaders/members',
                        {
                          'id'  : id,
                         }
               ).then(response => {
-                    this.supervisor_member= response.data;
+                    this.workers_member= response.data;
             },error => {
 
              });
@@ -228,14 +226,13 @@ export default {
       },
       assign() {
           $('#btn_submit').html('<i class="fa fa-spin fa-spinner"><i>') ;
-           axios.post('/setup/supervisors/assign',
+           axios.post('/setup/teamleaders/assign',
                           {
-                            'supervisor_userid'  : this.supervisor_id,
+                            'worker_userid'         : this.worker_id,
                             'teamlead_userid'     : this.teamlead_id,
                            }
                  ).then(response => {
                       if(response.data.type =='success') {
-
 
                             $('#msg').html('<span class="text-success">'+response.data.message+'</span>');
 
@@ -247,7 +244,7 @@ export default {
 
                       }
                       $('#btn_submit').html('Submit') ;
-                      this.getUser()
+                      this.team()
                },error => {
 
 
@@ -256,7 +253,7 @@ export default {
       },
       remove(id) {
 
-           axios.post('/setup/supervisors/removemember',
+           axios.post('/setup/teamleaders/removemember',
                           {
                             'id'  : id,
 

@@ -73,6 +73,10 @@ class UserController extends Controller
 
         return view('users.supervisor');
   }
+  public function teamleadersView() {
+
+        return view('users.teamlead');
+  }
   public function superVisors() {
 
       $supersVisors = DB::table('users')
@@ -92,6 +96,16 @@ class UserController extends Controller
 
     return response()->json($supersVisorMembers);
   }
+  public function teamleadMember(Request $request) {
+
+      $teamleadMember = DB::table('team_lead_members')
+                                ->join('users','team_lead_members.worker_userid','=','users.id')
+                                ->where('team_lead_members.teamlead_userid',$request->input('id'))
+                                ->select('users.*','team_lead_members.id as sv_id')
+                                ->get();
+
+    return response()->json($teamleadMember);
+  }
   public function teamleaders() {
 
       $teamlead = DB::table('users')
@@ -99,6 +113,14 @@ class UserController extends Controller
                         ->get();
 
     return response()->json($teamlead);
+  }
+  public function workers() {
+
+      $workers = DB::table('users')
+                        ->where('user_type','worker')
+                        ->get();
+
+    return response()->json($workers);
   }
 
   public function teamcount(Request $request) {
@@ -108,6 +130,29 @@ class UserController extends Controller
                       ->count('teamlead_userid');
       return response()->json($count);
 
+  }
+  public function assignWorker(Request $request) {
+
+    $validator = Validator::make($request->all(), [
+              'teamlead_userid'     => 'required',
+              'worker_userid'          => 'required|unique:team_lead_members',
+          ]);
+
+
+          if ($validator->fails()) {
+
+                $response = ['message' => $validator->messages()->first(),'type' => 'error'];
+
+          } else {
+              DB::table('team_lead_members')
+                ->insert([
+                              'worker_userid'  => $request->input('worker_userid'),
+                              'teamlead_userid'    => $request->input('teamlead_userid')
+                          ]);
+              $response = ['message' => 'New assignment submitted','type' => 'success'];
+
+          }
+      return response()->json($response, 200);
   }
   public function assign(Request $request) {
 
