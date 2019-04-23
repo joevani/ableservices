@@ -5,7 +5,7 @@
   "background_color": "#2196f3",
   "display": "standalone",
   "prefer_related_applications": false,
-  "start_url": "https://app.xinrox.com/login",
+  "start_url": "/",
   "orientation": "portrait",
   "icons": [
     {

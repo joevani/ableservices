@@ -72,20 +72,7 @@
 			});
 			}
 </script> -->
-<script>
-  'use strict';
-  if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-          // Registration was successful
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
-          // registration failed :(
-          console.log('ServiceWorker registration failed: ', err);
-        });
-});
-}
-</script>
+
 
 </head>
 
@@ -141,6 +128,7 @@
             </div>
         </div>
     </div>
+
     <script type="text/javascript" src="{{ asset('capstone/Template/assets/js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('capstone/Template/assets/js/popper.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('capstone/Template/assets/js/bootstrap.min.js')}}"></script>
@@ -155,6 +143,29 @@
               });
 
         });
+
+    </script>
+
+    <script>
+    // This is the "Offline page" service worker
+
+    // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
+
+    // Check compatibility for the browser we're running this in
+    if ("serviceWorker" in navigator) {
+    if (navigator.serviceWorker.controller) {
+    console.log("[PWA Builder] active service worker found, no need to register");
+    } else {
+    // Register the service worker
+    navigator.serviceWorker
+    .register("pwa-builder.js", {
+      scope: "./"
+    })
+    .then(function (reg) {
+      console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+    });
+    }
+    }
 
     </script>
 </body>
