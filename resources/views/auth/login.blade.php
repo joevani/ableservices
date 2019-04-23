@@ -96,7 +96,7 @@
                 <a href="index.html" class="login_close">
                     <i class="fa fa-close" aria-hidden="true"></i>
                 </a>
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" id="form" action="{{ route('login') }}">
                     @csrf
                           <img src="{{ asset('capstone/Template/assets/images/logo.jpg')}}"  alt="">
                           @if(Session::get('message'))
@@ -111,7 +111,7 @@
                          @endif
                         <div class="form-group">
                             <label>Username</label>
-                            <input type="text" name="username" class="form-control" placeholder="Email">
+                            <input type="text" name="username" class="form-control" placeholder="Username">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
@@ -125,7 +125,7 @@
                                 <a href="#">Forgotten Password?</a>
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
+                        <button type="submit" id="btn_login" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
 
                         <!-- <div class="register-link m-t-15 text-center">
                             <p>Don't have account ?
@@ -137,11 +137,22 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/popper.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="assets/js/custom.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('capstone/Template/assets/js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('capstone/Template/assets/js/popper.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('capstone/Template/assets/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('capstone/Template/assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+    <script src="{{ asset('capstone/Template/assets/js/custom.js')}}" type="text/javascript"></script>
+
+    <script>
+
+        $(function() {
+              $('#form').submit(function(){
+                $('#btn_login').html('<span class="fa fa-spin fa-spinner"></span>');
+              });
+
+        });
+
+    </script>
 </body>
 
 </html>

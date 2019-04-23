@@ -84,7 +84,6 @@
 			});
 			}
 </script> -->
-
 	@yield('styles')
 </head>
 
@@ -99,11 +98,9 @@
 		<!-- header_End -->
 		<!-- Content_right -->
 		<div class="container_full">
-
 			<!--SIDEBAR-->
 				@include('layouts.menu')
 			<!--END SIDEBAR-->
-
 			<div class="content_wrapper">
 					<div id="app">
 						@yield('content')
@@ -116,7 +113,6 @@
 		@include('layouts.footer')
 		<!-- Footer_End -->
 	</div>
-
 	<script src="{{ asset('js/app.js')}}"></script>
 	<script type="text/javascript" src="{{ asset('capstone/Template/assets/js/jquery.min.js')}}"></script>
 	<script type="text/javascript" src="{{ asset('capstone/Template/assets/js/popper.min.js')}}"></script>
