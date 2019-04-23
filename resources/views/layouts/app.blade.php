@@ -44,7 +44,7 @@
 	<link href="{{ asset('capstone/Template/assets/css/style.css')}}" rel="stylesheet">
 	<link href="{{ asset('capstone/Template/assets/css/responsive.css')}}" rel="stylesheet">
 
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 	'use strict';
 			if ('serviceWorker' in navigator) {
 					// Your service-worker.js *must* be located at the top-level directory relative to your site.
@@ -83,7 +83,7 @@
 			console.error('Error during service worker registration:', e);
 			});
 			}
-</script>
+</script> -->
 
 	@yield('styles')
 </head>
