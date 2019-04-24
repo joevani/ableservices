@@ -34,3 +34,6 @@ Route::get('issues/list', 'TicketsController@index');
 Route::post('close_ticket/{ticket_id}', 'TicketsController@close');
 Route::post('escalate_ticket/{ticket_id}', 'TicketsController@escalateSuperVisor');
 Route::post('comment', 'CommentsController@postComment');
+
+
+Route::view('offline', 'offline');

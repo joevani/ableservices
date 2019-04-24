@@ -1,3 +1,4 @@
+const workboxPlugin = require('workbox-webpack-plugin');
 const mix = require('laravel-mix');
 
 /*
@@ -15,37 +16,49 @@ mix.js('resources/js/app.js', 'public/js','public/capstone/Template/assets/js')
    .sass('resources/sass/app.scss', 'public/css','public/capstone/Template/assets/css');
 
 
-var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
-mix.webpackConfig({
-    plugins: [
-    new SWPrecacheWebpackPlugin({
-        cacheId: 'pwa',
-        filename: 'service-worker.js',
-        staticFileGlobs: ['public/**/*.{css,eot,svg,ttf,woff,woff2,js,html}'],
-        minify: false,
-        stripPrefix: 'public/',
-        handleFetch: true,
-        navigateFallback : '/dashboard',
-        dynamicUrlToDependencies: { //you should add the path to your blade files here so they can be cached
-          // '/': ['resources/views/auth/login.blade.php'],
-          // '/login': ['resources/views/auth/login.blade.php'],
-          // '/register': ['resources/views/auth/register.blade.php'],
-          //'/dashboard': ['resources/views/dashboard/index.blade.php'],
-          // '/profile/account': ['resources/views/profile/profile.blade.php'],
-        },
-        staticFileGlobsIgnorePatterns: [/\.map$/, /mix-manifest\.json$/, /manifest\.json$/, /service-worker\.js$/],
-        navigateFallback: '/',
-        runtimeCaching: [
-            {
-                urlPattern: /^https:\/\/fonts\.googleapis\.com\//,
-                handler: 'cacheFirst'
-            },
-            {
-                urlPattern: /^https:\/\/www\.thecocktaildb\.com\/images\/media\/drink\/(\w+)\.jpg/,
-                handler: 'cacheFirst'
-            }
-        ],
-        importScripts: ['js/offline.js']
+// var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+// mix.webpackConfig({
+//     plugins: [
+//     new SWPrecacheWebpackPlugin({
+//         cacheId: 'pwa',
+//         filename: 'service-worker.js',
+//         staticFileGlobs: ['public/**/*.{css,eot,svg,ttf,woff,woff2,js,html}'],
+//         minify: false,
+//         stripPrefix: 'public/',
+//         handleFetch: true,
+//         navigateFallback : '/dashboard',
+//         dynamicUrlToDependencies: { //you should add the path to your blade files here so they can be cached
+//           // '/': ['resources/views/auth/login.blade.php'],
+//           // '/login': ['resources/views/auth/login.blade.php'],
+//           // '/register': ['resources/views/auth/register.blade.php'],
+//           //'/dashboard': ['resources/views/dashboard/index.blade.php'],
+//           // '/profile/account': ['resources/views/profile/profile.blade.php'],
+//         },
+//         staticFileGlobsIgnorePatterns: [/\.map$/, /mix-manifest\.json$/, /manifest\.json$/, /service-worker\.js$/],
+//         navigateFallback: '/',
+//         runtimeCaching: [
+//             {
+//                 urlPattern: /^https:\/\/fonts\.googleapis\.com\//,
+//                 handler: 'cacheFirst'
+//             },
+//             {
+//                 urlPattern: /^https:\/\/www\.thecocktaildb\.com\/images\/media\/drink\/(\w+)\.jpg/,
+//                 handler: 'cacheFirst'
+//             }
+//         ],
+//         importScripts: ['js/offline.js']
+//     })
+//     ]
+// });
+
+if (mix.inProduction()) {
+    mix.webpackConfig({
+        plugins: [
+            new workboxPlugin.InjectManifest({
+                swSrc: 'public/sw-offline.js', // more control over the caching
+                swDest: 'sw.js', // the service-worker file name
+                importsDirectory: 'service-worker' // have a dedicated folder for sw files
+            })
+        ]
     })
-    ]
-});
+}
