@@ -73,7 +73,6 @@
 			}
 </script> -->
 
-
 </head>
 
 <body class="bg_darck">
@@ -128,7 +127,6 @@
             </div>
         </div>
     </div>
-
     <script type="text/javascript" src="{{ asset('capstone/Template/assets/js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('capstone/Template/assets/js/popper.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('capstone/Template/assets/js/bootstrap.min.js')}}"></script>
@@ -147,27 +145,61 @@
     </script>
 
     <script>
+
     // This is the "Offline page" service worker
 
     // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
 
     // Check compatibility for the browser we're running this in
     if ("serviceWorker" in navigator) {
-    if (navigator.serviceWorker.controller) {
-    console.log("[PWA Builder] active service worker found, no need to register");
-    } else {
-    // Register the service worker
-    navigator.serviceWorker
-    .register("pwa-builder.js", {
-      scope: "./"
-    })
-    .then(function (reg) {
-      console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
-    });
-    }
+          if (navigator.serviceWorker.controller) {
+          console.log("[PWA Builder] active service worker found, no need to register");
+          } else {
+          // Register the service worker
+          navigator.serviceWorker
+          .register("pwa-builder.js", {
+            scope: "./"
+          })
+          .then(function (reg) {
+            console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+          });
+          }
     }
 
     </script>
+
+    <script>
+
+//     $(function(){
+//       var installPromptEvent;
+//           var btnInstall = document.querySelector('.install');
+//
+//           window.addEventListener('beforeinstallprompt', function (event) {
+//             event.preventDefault();
+//             installPromptEvent = event;
+//             btnInstall.removeAttribute('disabled');
+//           });
+//
+//           btnInstall.click( function () {
+//             btnInstall.setAttribute('disabled', '');
+//             installPromptEvent.prompt();
+//             installPromptEvent.userChoice.then((choice) => {
+//                 if (choice.outcome === 'accepted') {
+//                     console.log('User accepted the A2HS prompt');
+//                 } else {
+//                     console.log('User dismissed the A2HS prompt');
+//                 }
+//                 installPromptEvent = null;
+//             });
+//           });
+//
+// });
+
+
+
+
+    </script>
+
 </body>
 
 </html>
