@@ -128,7 +128,7 @@ class TicketsController extends Controller
     public function escalateSuperVisor($ticket_id )
     {
         $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
-        $ticket->status = 'Escalated';
+        $ticket->status = 'Escalated to Supervisor';
         $ticket->is_escalated_to_supervisor = 1;
         $ticket->save();
         $ticketOwner = $ticket->user;
@@ -137,7 +137,7 @@ class TicketsController extends Controller
     public function escalateManagement($ticket_id )
     {
         $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
-        $ticket->status = 'Escalated';
+        $ticket->status = 'Escalated To Management';
         $ticket->is_escalated_to_management = 1;
         $ticket->save();
         $ticketOwner = $ticket->user;

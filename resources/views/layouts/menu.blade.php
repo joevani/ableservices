@@ -38,7 +38,7 @@
           </li>
 					@endif
           <li class="menu_sub">
-            <a href="{{ URL::to('upadtes')}}"> <i class="fa fa-bullhorn"></i> <span>News/Updates</span></a>
+            <a href="{{ URL::to('news')}}"> <i class="fa fa-bullhorn"></i> <span>News/Updates</span></a>
           </li>
 					@if(Auth::user()->user_type !="client")
           <li class="menu_sub">

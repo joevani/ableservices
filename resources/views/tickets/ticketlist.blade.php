@@ -30,7 +30,6 @@
                                   </div>
                               </div>
                 </div>
-
                           <div class="container-fluid">
                                                 <!-- state start-->
                                                 <div class="row">
@@ -38,10 +37,7 @@
                                                         <div class="card card-shadow mb-4">
                                                             <div class="card-header">
                                                                 <div class="card-title">
-
-
                                                                 </div>
-
                                                             </div>
                                                             <div class="card-body">
                                                              @include('includes.flash')
@@ -60,7 +56,6 @@
                                                                 </thead>
                                                                 <tbody>
                                                               @foreach ($tickets as $ticket)
-
                                                                 <tr>
                                                                     <td>
                                                                     @foreach ($categories as $category)
@@ -106,7 +101,7 @@
                                                                             {!! csrf_field() !!}
                                                                             <button type="submit" class="btn btn-danger btn-sm">Solve</button>
                                                                           </form>
-                                                                          <form action="{{ url('escalate_management_ticket/' . $ticket->ticket_id) }}" method="POST">
+                                                                          <form action="{{ url('escalate_ticket_admin/' . $ticket->ticket_id) }}" method="POST">
                                                                             {!! csrf_field() !!}
                                                                             <button type="submit" class="btn btn-error btn-sm">Escalate</button>
                                                                           </form>
@@ -121,10 +116,7 @@
                                                                                   {!! csrf_field() !!}
                                                                                   <button type="submit" class="btn btn-danger btn-sm">Solve</button>
                                                                                 </form>
-                                                                                <form action="{{ url('escalate_management_ticket/' . $ticket->ticket_id) }}" method="POST">
-                                                                                  {!! csrf_field() !!}
-                                                                                  <button type="submit" class="btn btn-error btn-sm">Escalate</button>
-                                                                                </form>
+
                                                                                 @endif
                                                                           @endif
                                                                       @endif

@@ -33,7 +33,13 @@ Route::get('tickets/{ticket_id}', 'TicketsController@show');
 Route::get('issues/list', 'TicketsController@index');
 Route::post('close_ticket/{ticket_id}', 'TicketsController@close');
 Route::post('escalate_ticket/{ticket_id}', 'TicketsController@escalateSuperVisor');
+Route::post('escalate_ticket_admin/{ticket_id}', 'TicketsController@escalateManagement');
 Route::post('comment', 'CommentsController@postComment');
+
+
+
+Route::get('news','NewsController@index');
+Route::get('news/create','NewsController@create');
 
 
 Route::view('offline', 'offline');
