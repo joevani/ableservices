@@ -40,6 +40,8 @@ Route::post('comment', 'CommentsController@postComment');
 
 Route::get('news','NewsController@index');
 Route::get('news/create','NewsController@create');
+Route::post('news/create','NewsController@store');
+Route::get('news/{id}','NewsController@show');
 
 
 Route::view('offline', 'offline');

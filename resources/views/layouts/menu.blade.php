@@ -54,7 +54,7 @@
 
 
 					<li class="menu_sub">
-						<a href="#"> <i class="fa fa-table"></i> <span>Memos </span> <span class="badge badge-pill badge-danger float-right">2</span> </a>
+						<a href="#"> <i class="fa fa-table"></i> <span>Memos </span> <span class="icon-arrow-down styleicon"></span>  </a>
 						<ul class="down_menu">
 								@if(Auth::user()->user_type=='management')
 							<li>
@@ -67,7 +67,7 @@
 						</ul>
 					</li>
           <li class="menu_sub">
-            <a href="#"> <i class="fa fa-comments-o"></i> <span>My Messages </span> <span class="badge badge-pill badge-danger float-right">2</span> </a>
+            <a href="#"> <i class="fa fa-comments-o"></i> <span>My Messages </span> <span class="icon-arrow-down styleicon"></span>  </a>
             <ul class="down_menu">
               <li>
                 <a href="#">Create New</a>

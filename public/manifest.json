@@ -4,9 +4,6 @@
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
   "display": "standalone",
-  "prefer_related_applications": false,
-  "start_url": "/",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
@@ -35,6 +32,7 @@
     }
 
   ],
-  "splash_pages": null
+  "start_url": "https://app.xinrox.com/login",
+  "orientation": "portrait"
 
 }

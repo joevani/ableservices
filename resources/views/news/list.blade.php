@@ -27,36 +27,46 @@
               <div class="heading_view">
                 <h2>News & Updates</h2>
               </div>
-              <a href="{{URL::to('news/create')}}" class="btn btn-info btn-sm pull-right">Create</a>
+
+              @if(Auth::user()->user_type=="management")
+                  <a href="{{URL::to('news/create')}}" class="btn btn-info btn-sm pull-right">Create</a>
+              @endif
             </div>
             <div class="col-12 mb-4">
               <div class="card border-none">
 
                 <div class="card-body p-0">
+                  @if(count($news) > 0)
+                      @foreach($news as $new)
+                      <div class="media brdr-b mb-3 pb-3">
+                        <div class="course_picture">
+                          <a href="{{URL::to('news/')}}/{{$new->id}}"><img class="align-self-center mr-3" src="{{asset('capstone/Template/assets/images')}}/{{$new->thumbnail}}" alt=""></a>
+                        </div>
+                        <div class="media-body">
+                          <p class="mb-0">
+                            <a href="{{URL::to('news/')}}/{{$new->id}}" class="course_title"> {{$new->subject}}</a>
+                          </p>
+                          <div class="class_time">
+                            Posted : <i class="fa fa-clock -o"></i> {{date('F d, Y h:s A',strtotime($new->created_at))}}
+                          </div>
+                          <ul class="courses-info">
 
-                  <div class="media brdr-b mb-3 pb-3">
-                    <div class="course_picture">
-                      <a href="courses-details.html"><img class="align-self-center mr-3" src="{{asset('capstone/Template/assets/images/course_list1.jpg')}}" alt=""></a>
-                    </div>
-                    <div class="media-body">
-                      <p class="mb-0">
-                        <a href="courses-details.html" class="course_title"> Philosopphy</a>
-                      </p>
-                      <div class="class_time">
-                        Classes <i class="fa fa-clock-o"></i> 10 am - 11 am
+                            <li class="courses-info__price">
+                              <a href="{{URL::to('news/')}}/{{$new->id}}" class="btn btn-success btn-sm" >Read more . .</a>
+                            </li>
+                            <li>
+                              <!-- <span><i class="fa fa-users txt-warning"></i> 200</span>
+                              <span class="heart_icon"> <i class="fa fa-heart-o"></i></span> -->
+                            </li>
+                          </ul>
+                        </div>
                       </div>
-                      <ul class="courses-info">
+                      @endforeach
 
-                        <li class="courses-info__price">
-                          <a href="" class="btn btn-success btn-sm" >Read more . .</a>
-                        </li>
-                        <li>
-                          <!-- <span><i class="fa fa-users txt-warning"></i> 200</span>
-                          <span class="heart_icon"> <i class="fa fa-heart-o"></i></span> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                      {{$news->links()}}
+                  @else
+                       No news being posted
+                  @endif
                 </div>
               </div>
             </div>
