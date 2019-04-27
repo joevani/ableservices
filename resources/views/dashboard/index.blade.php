@@ -89,8 +89,7 @@
         </div>
 
 
-
-        @elseif(Auth::user()->user_type=='client')
+        @else
           <div class="row">
             <div class="col-12 mb-3">
               <div class="heading_view">
@@ -145,17 +144,7 @@
               </div>
             </div>
 
-
-
-
-
-
-
-
-
             </div>
-
-
 
           </div>
 
