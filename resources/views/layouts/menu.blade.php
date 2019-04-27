@@ -58,11 +58,11 @@
 						<ul class="down_menu">
 								@if(Auth::user()->user_type=='management')
 							<li>
-								<a href="#">Create Memo</a>
+								<a href="{{URL::to('memo/create')}}">Create Memo</a>
 							</li>
 							@endif
 							<li>
-								<a href="#">Memo List</a>
+								<a href="{{URL::to('memo')}}">Memo</a>
 							</li>
 						</ul>
 					</li>
@@ -80,9 +80,14 @@
           </li>
 						@if(Auth::user()->user_type=='management')
 		          <li class="menu_sub">
-		            <a href="#"> <i class="fa fa-newspaper-o"></i> <span>Client Feedbacks</span></a>
+		            <a href="{{URL::to('feedbacks')}}"> <i class="fa fa-newspaper-o"></i> <span>Client Feedbacks</span></a>
 		          </li>
 					@endif
+						@if(Auth::user()->user_type=='client')
+							  <li class="menu_sub">
+								  <a href="{{URL::to('feedbacks/create')}}"> <i class="fa fa-newspaper-o"></i> <span>Submit Feedback</span></a>
+								</li>
+						@endif
           <li class="menu_sub">
 						<a class="dropdown-item" href="{{ route('logout') }}"
 							 onclick="event.preventDefault();

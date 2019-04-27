@@ -8,8 +8,6 @@
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 	<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
 
-
-	<link rel="manifest" href="{{ asset('manifest.json')}}">
 	<link rel="apple-touch-icon" href="{{ asset('Nandova/img/iphonetouch.png') }}" >
 	<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('Nandova/img/152x152.png') }}" >
 	<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('Nandova/img/180x180.png') }}" >
@@ -43,6 +41,8 @@
 
 	<link href="{{ asset('capstone/Template/assets/css/style.css')}}" rel="stylesheet">
 	<link href="{{ asset('capstone/Template/assets/css/responsive.css')}}" rel="stylesheet">
+
+	
 	@yield('styles')
 </head>
 

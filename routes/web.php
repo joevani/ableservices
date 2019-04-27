@@ -44,4 +44,13 @@ Route::post('news/create','NewsController@store');
 Route::get('news/{id}','NewsController@show');
 
 
+Route::get('memo/create','MemoController@create');
+Route::post('memo/create','MemoController@store');
+Route::get('memo','MemoController@index');
+
+Route::get('feedbacks','FeedbackController@index');
+Route::get('feedbacks/create','FeedbackController@create');
+Route::post('feedbacks/create','FeedbackController@store');
+
+
 Route::view('offline', 'offline');

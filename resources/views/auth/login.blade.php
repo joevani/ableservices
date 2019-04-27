@@ -45,29 +45,6 @@
 
   <link rel="manifest" href="{{ asset('manifest.json')}}">
 
-  <script type="text/javascript">
-	'use strict';
-  // This is the service worker with the Advanced caching
-
-// Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
-
-// Check compatibility for the browser we're running this in
-if ("serviceWorker" in navigator) {
-      if (navigator.serviceWorker.controller) {
-      console.log("[PWA Builder] active service worker found, no need to register");
-      } else {
-      // Register the service worker
-      navigator.serviceWorker
-        .register("pwabuilder-sw.js", {
-          scope: "https://app.xinrox.com/login"
-        })
-        .then(function (reg) {
-          console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
-        });
-      }
-}
-
-</script>
 
 </head>
 
@@ -140,61 +117,25 @@ if ("serviceWorker" in navigator) {
 
     </script>
 
-    <script>
+    <script type="text/javascript">
 
-    // This is the "Offline page" service worker
+  if ("serviceWorker" in navigator) {
+        if (navigator.serviceWorker.controller) {
+        console.log("[PWA Builder] active service worker found, no need to register");
+        } else {
+        // Register the service worker
+        navigator.serviceWorker
+          .register("pwabuilder-sw.js", {
+            scope: "/login"
+          })
+          .then(function (reg) {
+            console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+          });
+        }
+  }
 
-    // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
+  </script>
 
-    // Check compatibility for the browser we're running this in
-    // if ("serviceWorker" in navigator) {
-    //       if (navigator.serviceWorker.controller) {
-    //       console.log("[PWA Builder] active service worker found, no need to register");
-    //       } else {
-    //       // Register the service worker
-    //       navigator.serviceWorker
-    //       .register("pwa-builder.js", {
-    //         scope: "./"
-    //       })
-    //       .then(function (reg) {
-    //         console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
-    //       });
-    //       }
-    // }
-
-    </script>
-
-    <script>
-
-//     $(function(){
-//       var installPromptEvent;
-//           var btnInstall = document.querySelector('.install');
-//
-//           window.addEventListener('beforeinstallprompt', function (event) {
-//             event.preventDefault();
-//             installPromptEvent = event;
-//             btnInstall.removeAttribute('disabled');
-//           });
-//
-//           btnInstall.click( function () {
-//             btnInstall.setAttribute('disabled', '');
-//             installPromptEvent.prompt();
-//             installPromptEvent.userChoice.then((choice) => {
-//                 if (choice.outcome === 'accepted') {
-//                     console.log('User accepted the A2HS prompt');
-//                 } else {
-//                     console.log('User dismissed the A2HS prompt');
-//                 }
-//                 installPromptEvent = null;
-//             });
-//           });
-//
-// });
-
-
-
-
-    </script>
 
 </body>
 
