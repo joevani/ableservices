@@ -28,7 +28,7 @@
 								<div class="course__text_details mb-4">
                   <img class="" src="{{asset('capstone/Template/assets/images')}}/{{$details->thumbnail}}" alt="">
                   <br>
-            			<h1 class="mb-2">Learning jquery mobile</h1>
+            			<h1 class="mb-2">{{$details->subject}}</h1>
                     			<p>{{$details->content}}</p>
             		</div>
 
