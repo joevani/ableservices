@@ -22,18 +22,33 @@ class TicketsController extends Controller
     public function index()
     {
         if(Auth::user()->user_type=='team lead') {
-          $members = DB::table('team_lead_members')->where('teamlead_userid',Auth::user()->id)->pluck('worker_userid')->toArray();
+          $members = [];
+					//
 
-          $tickets    = Ticket::whereIn('user_id',$members)->paginate(10);
-          $categories = Category::all();
-          return view('tickets.ticketlist', compact('tickets', 'categories'));
+					$team = DB::table('team_lead_members')->where('teamlead_userid',Auth::user()->id)->get();
+					foreach ($team as $key => $value) {
+											array_push($members,$team->worker_userid);
+									}
+
+           $tickets    = Ticket::whereIn('user_id',$members)
+
+													->paginate(10);
+           $categories = Category::all();
+           return view('tickets.ticketlist', compact('tickets', 'categories'));
         }
         if(Auth::user()->user_type=='supervisor') {
-              $supervisor   = DB::table('supervisor_members')->whereIn('supervisor_userid',Auth::user()->id)->pluck('teamlead_userid')->toArray();
-              $members = DB::table('team_lead_members')->whereIn('teamlead_userid',$supervisor)->pluck('worker_userid')->toArray();
+
+						$members = [] ;
+            $supervisor   = DB::table('supervisor_members')->where('supervisor_userid',Auth::user()->id)->get();
+              //$members = DB::table('team_lead_members')->whereIn('teamlead_userid',[$supervisor])->pluck('worker_userid')->toArray();
+							foreach ($supervisor as $key => $value) {
+												$teamMembers = DB::table('team_lead_members')->where('teamlead_userid',$value->teamlead_userid)->first(['worker_userid']);
+													array_push($members,$teamMembers->worker_userid);
+											}
+
+
               $tickets    = Ticket::whereIn('user_id',$members)->paginate(10);
               $categories = Category::all();
-
               return view('tickets.ticketlist', compact('tickets', 'categories'));
         }
         if(Auth::user()->user_type=='management'){
@@ -41,7 +56,6 @@ class TicketsController extends Controller
               $categories = Category::all();
               return view('tickets.ticketlist', compact('tickets', 'categories'));
         }
-
 
     }
     /**

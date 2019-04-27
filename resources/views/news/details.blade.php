@@ -31,7 +31,6 @@
             			<h1 class="mb-2">{{$details->subject}}</h1>
                     			<p>{{$details->content}}</p>
             		</div>
-
 							</div>
 						</div>
 					</div>
