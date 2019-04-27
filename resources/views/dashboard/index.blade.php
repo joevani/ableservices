@@ -48,8 +48,6 @@
               </a>
             </div>
           </div>
-
-
           <div class="fl-col">
             <div class="course_box">
               <a href="">
@@ -57,11 +55,9 @@
                   <i class="la la-list" aria-hidden="true"></i>
                   <span>Supervisor Assignment</span>
                 </div>
-
               </a>
             </div>
           </div>
-
           <div class="fl-col">
             <div class="course_box">
               <a href="course-list.html">
@@ -69,7 +65,6 @@
                   <i class="la la-flask" aria-hidden="true"></i>
                   <span>Team Lead Assignment</span>
                 </div>
-
               </a>
             </div>
           </div>
