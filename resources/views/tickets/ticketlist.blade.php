@@ -107,7 +107,7 @@
                                                                       @if(Auth::user()->user_type=='supervisor')
                                                                           @if($ticket->is_escalated_to_supervisor == 1)
                                                                           <a href="{{ url('tickets/' . $ticket->ticket_id) }}" class="btn btn-primary btn-sm">Comment</a>
-                                                                          @if(Auth::user()->user_type=='team lead')
+                                                                          @if(Auth::user()->user_type=='supervisor')
                                                                           <form action="{{ url('close_ticket/' . $ticket->ticket_id) }}" method="POST">
                                                                             {!! csrf_field() !!}
                                                                             <button type="submit" class="btn btn-danger btn-sm">Solve</button>
@@ -122,7 +122,7 @@
                                                                       @if(Auth::user()->user_type=='management')
                                                                             @if($ticket->is_escalated_to_management == 1)
                                                                             <a href="{{ url('tickets/' . $ticket->ticket_id) }}" class="btn btn-primary btn-sm">Comment</a>
-                                                                                @if(Auth::user()->user_type=='team lead')
+                                                                                @if(Auth::user()->user_type=='management')
                                                                                 <form action="{{ url('close_ticket/' . $ticket->ticket_id) }}" method="POST">
                                                                                   {!! csrf_field() !!}
                                                                                   <button type="submit" class="btn btn-danger btn-sm">Solve</button>
