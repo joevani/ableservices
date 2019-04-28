@@ -31,6 +31,9 @@
               @if(Auth::user()->user_type=="management")
                   <a href="{{URL::to('news/create')}}" class="btn btn-info btn-sm pull-right">Create</a>
               @endif
+              @if(Auth::user()->user_type=="supervisor")
+                  <a href="{{URL::to('news/create')}}" class="btn btn-info btn-sm pull-right">Create</a>
+              @endif
             </div>
             <div class="col-12 mb-4">
               <div class="card border-none">
