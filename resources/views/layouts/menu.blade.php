@@ -63,7 +63,7 @@
 
 					@endif
 
-
+					@if(Auth::user()->user_type !='client')
 					<li class="menu_sub">
 						<a href="#"> <i class="fa fa-table"></i> <span>Memos </span> <span class="icon-arrow-down styleicon"></span>  </a>
 						<ul class="down_menu">
@@ -77,6 +77,7 @@
 							</li>
 						</ul>
 					</li>
+					@endif
 
           <li class="menu_sub">
             <a href="#"> <i class="fa fa-comments-o"></i> <span>My Messages </span> <span class="icon-arrow-down styleicon"></span>  </a>
