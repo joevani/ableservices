@@ -280,7 +280,7 @@ class ProfileController extends Controller
 
     }
       public function updatePassword(Request $request) {
-        $plain_password = str_random(8);
+        $plain_password = $request->input('password');
         $password = Hash::make($plain_password);
                                   DB::table('users')
                                           ->where('id',$request->input('id'))

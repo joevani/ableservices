@@ -18,7 +18,7 @@
                                               <ol class="breadcrumb">
                                                   <li>
                                                       <i class="fa fa-home"></i>
-                                                      <a class="parent-item" href="index.html">Home</a>
+                                                      <a class="parent-item" href="{{URL::to('dashboard')}}">Home</a>
                                                       <i class="fa fa-angle-right"></i>
                                                   </li>
                                                   <li class="active">
@@ -110,17 +110,17 @@
                                                                       @if(Auth::user()->user_type=='supervisor')
                                                                           @if($ticket->is_escalated_to_supervisor == 1)
                                                                             @if($ticket->status !="Solved")
-                                                                          <a href="{{ url('tickets/' . $ticket->ticket_id) }}" class="btn btn-primary btn-sm">Comment</a>
-                                                                          @if(Auth::user()->user_type=='supervisor')
-                                                                          <form action="{{ url('close_ticket/' . $ticket->ticket_id) }}" method="POST">
-                                                                            {!! csrf_field() !!}
-                                                                            <button type="submit" class="btn btn-danger btn-sm">Solve</button>
-                                                                          </form>
-                                                                          <form action="{{ url('escalate_ticket_admin/' . $ticket->ticket_id) }}" method="POST">
-                                                                            {!! csrf_field() !!}
-                                                                            <button type="submit" class="btn btn-error btn-sm">Escalate to management</button>
-                                                                          </form>
-                                                                          @endif
+                                                                                <a href="{{ url('tickets/' . $ticket->ticket_id) }}" class="btn btn-primary btn-sm">Comment</a>
+                                                                                @if(Auth::user()->user_type=='supervisor')
+                                                                                    <form action="{{ url('close_ticket/' . $ticket->ticket_id) }}" method="POST">
+                                                                                      {!! csrf_field() !!}
+                                                                                      <button type="submit" class="btn btn-danger btn-sm">Solve</button>
+                                                                                    </form>
+                                                                                <form action="{{ url('escalate_ticket_admin/' . $ticket->ticket_id) }}" method="POST">
+                                                                                  {!! csrf_field() !!}
+                                                                                  <button type="submit" class="btn btn-error btn-sm">Escalate to management</button>
+                                                                                </form>
+                                                                              @endif
                                                                           @endif
                                                                         @endif
                                                                       @endif

@@ -10,7 +10,7 @@ This is done for you so you don't have to.
 However, for Ad_hoc or Enterprise distirbution, the extension should be removed
 from the files before adding to XCode to avoid error.
 
-refs: https://developer.apple.com/library/ios/qa/qa1686/_index.html
+refs: https://developer.apple.com/library/ios/qa/qa1686/_{{URL::to('dashboard')}}
 
 ## iTunesArtwork & iTunesArtwork@2x (App Icon) transparency handling:
 

@@ -9,7 +9,7 @@
                                             <ol class="breadcrumb">
                                                 <li>
                                                     <i class="fa fa-home"></i>
-                                                    <a class="parent-item" href="index.html">Home</a>
+                                                    <a class="parent-item" href="">Home</a>
                                                     <i class="fa fa-angle-right"></i>
                                                 </li>
                                                 <li class="active">
@@ -92,7 +92,7 @@
                                                         <tr>
                                                           <th>Name</th>
                                                           <th>Position</th>
-                                                        
+
                                                           <th>Team Leaders List</th>
                                                         </tr>
                                                     </tfoot>

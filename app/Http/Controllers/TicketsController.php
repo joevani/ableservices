@@ -46,7 +46,7 @@ class TicketsController extends Controller
               $categories = Category::all();
               return view('tickets.ticketlist', compact('tickets', 'categories'));
         }
-				
+
         if(Auth::user()->user_type=='management'){
               $tickets    = Ticket::where('type',0)->paginate(10);
               $categories = Category::all();
@@ -103,7 +103,6 @@ class TicketsController extends Controller
         else {
               return redirect()->back()->with("status", "Something went wrong");
         }
-
 
     }
     /**

@@ -22,23 +22,19 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function sent()
-    {
+    public function sent() {
         $messages = DB::table('chat')
                     ->where('from_user',Auth::user()->id)
                     ->get();
-
-          return view('messages.inbox',compact('messages'));
+        return view('messages.inbox',compact('messages'));
     }
 
-    public function inbox()
-    {
+    public function inbox() {
         $messages = DB::table('chat')
                     ->where('to_user',Auth::user()->id)
                     ->get();
           return view('messages.message',compact('messages'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -52,7 +48,6 @@ class MessageController extends Controller
         $users = DB::table('users')->get();
 
             return view('messages.create',compact('users'));
-
 
 
 

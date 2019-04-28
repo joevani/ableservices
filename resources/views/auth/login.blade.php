@@ -56,7 +56,7 @@
 
                 <div class="login-form">
 
-                <a href="index.html" class="login_close">
+                <a href="{{URL::to('dashboard')}}" class="login_close">
                     <i class="fa fa-close" aria-hidden="true"></i>
                 </a>
                 <form method="POST" id="form" action="{{ route('login') }}">
@@ -117,7 +117,7 @@
 
     </script>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
 
   if ("serviceWorker" in navigator) {
         if (navigator.serviceWorker.controller) {
@@ -134,7 +134,7 @@
         }
   }
 
-  </script>
+  </script> -->
 
 
 </body>

@@ -15,7 +15,7 @@
                                         <ol class="breadcrumb">
                                             <li>
                                                 <i class="fa fa-home"></i>
-                                                <a class="parent-item" href="index.html">Home</a>
+                                                <a class="parent-item" href="{{URL::to('dashboard')}}">Home</a>
                                                 <i class="fa fa-angle-right"></i>
                                             </li>
                                             <li class="active">
