@@ -58,9 +58,10 @@ class MemoController extends Controller
 
       DB::table('memo')
               ->insert([
-                        'user_id'   => $user_id,
-                        'subject'   => $subject,
-                        'content'   => $content
+                        'user_id'     => $user_id,
+                        'subject'     => $subject,
+                        'content'     => $content,
+                        'created_by'  => Auth::user()->id
                     ]);
 
       return redirect()->back()->with("status", "Memo Submitted");
