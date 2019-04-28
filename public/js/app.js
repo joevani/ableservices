@@ -42795,7 +42795,7 @@ var staticRenderFns = [
                     "a",
                     {
                       staticClass: "parent-item",
-                      attrs: { href: "{{URL::to('dashboard')}}" }
+                      attrs: { href: "/dashboard" }
                     },
                     [_vm._v("Home")]
                   ),
@@ -43545,7 +43545,7 @@ var staticRenderFns = [
                     "a",
                     {
                       staticClass: "parent-item",
-                      attrs: { href: "{{URL::to('dashboard')}}" }
+                      attrs: { href: "/dashboard" }
                     },
                     [_vm._v("Home")]
                   ),
@@ -44053,7 +44053,7 @@ var staticRenderFns = [
                     "a",
                     {
                       staticClass: "parent-item",
-                      attrs: { href: "{{URL::to('dashboard')}}" }
+                      attrs: { href: "/dashboard" }
                     },
                     [_vm._v("Home")]
                   ),
@@ -44602,7 +44602,7 @@ var staticRenderFns = [
                     "a",
                     {
                       staticClass: "parent-item",
-                      attrs: { href: "/dashboard" }
+                      attrs: { href: "dashboard" }
                     },
                     [_vm._v("Home")]
                   ),

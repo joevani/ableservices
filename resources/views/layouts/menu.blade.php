@@ -53,10 +53,10 @@
           </li>
 					@if(Auth::user()->user_type !="client")
           <li class="menu_sub">
-							@if(Auth::user()->user_type=='worker')
+							@if(Auth::user()->user_type=='worker' && Auth::user()->user_type =="team lead")
             	<a href="{{ URL::to('issues')}}"> <i class="fa fa-ticket"></i> <span>Issues/Concerns</span></a>
 							@endif
-							@if(Auth::user()->user_type !='worker')
+							@if(Auth::user()->user_type !='worker' &&  Auth::user()->user_type !='team lead')
 									<a href="{{ URL::to('issues/list')}}"> <i class="fa fa-ticket"></i> <span>Issues/Concerns</span></a>
 							@endif
           </li>
@@ -67,7 +67,7 @@
 					<li class="menu_sub">
 						<a href="#"> <i class="fa fa-table"></i> <span>Memos </span> <span class="icon-arrow-down styleicon"></span>  </a>
 						<ul class="down_menu">
-								@if(Auth::user()->user_type=='management')
+						@if(Auth::user()->user_type !="client" || Auth::user()->user_type!="worker")
 							<li>
 								<a href="{{URL::to('memo/create')}}">Create Memo</a>
 							</li>

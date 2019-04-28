@@ -39,8 +39,6 @@
                                                             <div class="card-header">
                                                                 <div class="card-title">
 
-                                                                 <a href="{{ url('feedbacks/create') }}" class="btn btn-success btn-sm pull-right">Submit Feedback</a>
-
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">

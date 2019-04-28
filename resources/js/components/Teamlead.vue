@@ -9,7 +9,7 @@
                                             <ol class="breadcrumb">
                                                 <li>
                                                     <i class="fa fa-home"></i>
-                                                    <a class="parent-item" href="">Home</a>
+                                                    <a class="parent-item" href="/dashboard">Home</a>
                                                     <i class="fa fa-angle-right"></i>
                                                 </li>
                                                 <li class="active">
