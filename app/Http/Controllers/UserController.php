@@ -203,7 +203,7 @@ class UserController extends Controller
                               ->select('users.*','supervisor_members.id as sv_id')
                               ->get();
 
-            return view('users.workers',compact('users'));
+            return view('users.leaders',compact('users'));
   }
 
 
