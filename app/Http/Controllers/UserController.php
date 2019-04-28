@@ -161,7 +161,6 @@ class UserController extends Controller
           ]);
 
           if ($validator->fails()) {
-
                 $response = ['message' => $validator->messages()->first(),'type' => 'error'];
 
           } else {
