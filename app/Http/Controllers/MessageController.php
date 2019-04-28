@@ -50,7 +50,6 @@ class MessageController extends Controller
             return view('messages.create',compact('users'));
 
 
-
     }
 
     /**
@@ -80,7 +79,31 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        //
+          $replys  = DB::table('reply')
+                  ->where('ticket_id',$id)
+                  ->get();
+            $message = DB::table('chat')
+                    ->where('id',$id)
+                    ->first(['id','message']);
+
+
+          return view('messages.show',compact('replys','message'));
+    }
+
+    public function reply(Request $request) {
+
+      $ticket_id = $request->input('ticket_id');
+      $comment   = $request->input('comment');
+
+      DB::table('reply')
+            ->insert([
+                    'ticket_id'   => $ticket_id,
+                    'comment'     => $comment ,
+                    'user_id'     => Auth::user()->id
+            ]);
+
+          return redirect()->back()->with("status", "Comment has been sent");
+
     }
 
     /**

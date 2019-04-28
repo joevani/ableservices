@@ -175,7 +175,7 @@ class UserController extends Controller
       return response()->json($response, 200);
   }
   public function remove(Request $request) {
-
+    
               DB::table('supervisor_members')
                 ->where('teamlead_userid',$request->input('id'))
                 ->delete();
@@ -196,7 +196,6 @@ class UserController extends Controller
   }
 
   public function leaders() {
-
     $users = DB::table('supervisor_members')
                               ->join('users','supervisor_members.teamlead_userid','=','users.id')
                               ->where('supervisor_members.teamlead_userid',Auth::user()->id)

@@ -116,7 +116,6 @@
                                                                   @endforeach
                                                             </select>
                                                         </div>
-
                                                      <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
                                                          <label for="message" class=" control-label">Message</label>
 

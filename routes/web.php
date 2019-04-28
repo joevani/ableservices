@@ -78,6 +78,8 @@ Route::get('messages/create','MessageController@create');
 Route::post('messages/create','MessageController@store');
 Route::get('messages/sent','MessageController@sent');
 Route::get('messages/inbox','MessageController@inbox');
+Route::get('messages/reply/{id}','MessageController@show');
+Route::post('messages/reply','MessageController@reply');
 
 Route::get('setup/locations','LocationsController@index');
 Route::get('setup/locations/create','LocationsController@create');

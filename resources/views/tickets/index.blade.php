@@ -86,14 +86,13 @@
                                                                           @endif
                                                                         @if($ticket->status === 'Solved')
                                                                           {{DB::table('users')->where('id',$ticket->resolved_by)->first(['name'])->name}}
-                                                                        @endif 
+                                                                        @endif
                                                                       </td>
                                                                       <td>{{ $ticket->updated_at }}</td>
                                                                     </tr>
                                                                   @endforeach
                                                                   </tbody>
                                                                 </table>
-
                                                                 {{ $tickets->render() }}
                                                               @endif
                                                             </div>

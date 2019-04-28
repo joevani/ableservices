@@ -52,6 +52,7 @@
                                                                       <th>Message</th>
 
                                                                       <th>Date</th>
+                                                                      <th></th>
                                                                     </tr>
                                                                   </thead>
                                                                   <tbody>
@@ -60,8 +61,8 @@
                                                                         <td>{{DB::table('users')->where('id',$inbox->to_user)->first(['name'])->name}}</td>
                                                                         <td>{{$inbox->message}}</td>
                                                                         <td>{{date('F d, Y h:s A',strtotime($inbox->created_at))}}</td>
+                                                                        <td><a href="{{URL::to('messages/reply')}}/{{$inbox->id}}" class="btn btn-info btn-sm"><i class="fa fa-reply"></i> Reply</a></td>
                                                                     </tr>
-
                                                                   @endforeach
                                                                   </tbody>
                                                                 </table>
