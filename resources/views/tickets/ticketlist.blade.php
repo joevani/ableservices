@@ -89,9 +89,10 @@
                                                                     <td>{{ $ticket->updated_at }}</td>
 
                                                                     <td>
-                                                                  @if ($ticket->status != 'Solved')
+
                                                                     @if(Auth::user()->user_type=='team lead')
                                                                           @if($ticket->is_escalated_to_supervisor == 0)
+                                                                            @if($ticket->status !="Solved")
                                                                                 <a href="{{ url('tickets/' . $ticket->ticket_id) }}" class="btn btn-primary btn-sm">Comment</a>
                                                                                 @if(Auth::user()->user_type=='team lead')
                                                                                 <form action="{{ url('close_ticket/' . $ticket->ticket_id) }}" method="POST">
@@ -103,10 +104,12 @@
                                                                                   <button type="submit" class="btn btn-error btn-sm">Escalate</button>
                                                                                 </form>
                                                                                 @endif
+                                                                            @endif
                                                                               @endif
                                                                       @endif
                                                                       @if(Auth::user()->user_type=='supervisor')
                                                                           @if($ticket->is_escalated_to_supervisor == 1)
+                                                                            @if($ticket->status !="Solved")
                                                                           <a href="{{ url('tickets/' . $ticket->ticket_id) }}" class="btn btn-primary btn-sm">Comment</a>
                                                                           @if(Auth::user()->user_type=='supervisor')
                                                                           <form action="{{ url('close_ticket/' . $ticket->ticket_id) }}" method="POST">
@@ -118,21 +121,21 @@
                                                                             <button type="submit" class="btn btn-error btn-sm">Escalate to management</button>
                                                                           </form>
                                                                           @endif
+                                                                          @endif
                                                                         @endif
                                                                       @endif
                                                                       @if(Auth::user()->user_type=='management')
                                                                             @if($ticket->is_escalated_to_management == 1)
+                                                                              @if($ticket->status !="Solved")
                                                                             <a href="{{ url('tickets/' . $ticket->ticket_id) }}" class="btn btn-primary btn-sm">Comment</a>
                                                                                 @if(Auth::user()->user_type=='management')
                                                                                 <form action="{{ url('close_ticket/' . $ticket->ticket_id) }}" method="POST">
                                                                                   {!! csrf_field() !!}
                                                                                   <button type="submit" class="btn btn-danger btn-sm">Solve</button>
                                                                                 </form>
-
+                                                                              @endif
                                                                                 @endif
                                                                           @endif
-                                                                      @endif
-
                                                                       @endif
                                                                     </td>
                                                                   </tr>
