@@ -160,7 +160,6 @@ class UserController extends Controller
               'teamlead_userid'          => 'required|unique:supervisor_members',
           ]);
 
-
           if ($validator->fails()) {
 
                 $response = ['message' => $validator->messages()->first(),'type' => 'error'];
@@ -172,7 +171,6 @@ class UserController extends Controller
                             'teamlead_userid'    => $request->input('teamlead_userid')
                           ]);
               $response = ['message' => 'New assignment submitted','type' => 'success'];
-
           }
       return response()->json($response, 200);
   }
@@ -186,6 +184,15 @@ class UserController extends Controller
 
       return response()->json($response, 200);
   }
+  public function workerss() {
 
+    $users = DB::table('team_lead_members')
+                              ->join('users','team_lead_members.worker_userid','=','users.id')
+                              ->where('team_lead_members.teamlead_userid',Auth::user()->id)
+                              ->select('users.*','team_lead_members.id as sv_id')
+                              ->get();
+
+            return view('users.workers',compact('users'));
+  }
 
 }

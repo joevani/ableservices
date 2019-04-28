@@ -22,7 +22,7 @@
                                                       <i class="fa fa-angle-right"></i>
                                                   </li>
                                                   <li class="active">
-                                                    Employees
+                                                    Feedbacks
                                                   </li>
                                               </ol>
                                           </div>
@@ -30,7 +30,8 @@
                                   </div>
                               </div>
                 </div>
-                    <div class="container-fluid">
+
+                          <div class="container-fluid">
                                                 <!-- state start-->
                                                 <div class="row">
                                                     <div class=" col-12">
@@ -38,58 +39,47 @@
                                                             <div class="card-header">
                                                                 <div class="card-title">
 
-                                                                      <a href="/setup/users/create" class="btn btn-success pull-right">Add User</a>
-                                                                </div>
+                                                                 <a href="{{ url('feedbacks/create') }}" class="btn btn-success btn-sm pull-right">Submit Feedback</a>
 
+                                                                </div>
                                                             </div>
                                                             <div class="card-body">
                                                                 <div id="msg"></div>
-                                                                <div class="table-responsive">
+                                                                    @if ($tickets->isEmpty())
+                                                            <p>You have not created any feedbacks.</p>
+                                                              @else
                                                               <table id="bs4-table" class="table table-bordered table-striped">
                                                                   <thead>
                                                                     <tr>
-                                                                      <th>Profile Pic</th>
-                                                                      <th>Username</th>
-                                                                      <th>Email</th>
-                                                                      <th>Name</th>
-                                                                      <th>User Type</th>
-                                                                      <th>Assigned To</th>
-                                                                      <th>Action</th>
+
+                                                                      <th>Subject</th>
+                                                                      @if(Auth::user()->user_type=='management')
+                                                                      <th>Client</th>
+                                                                      @endif
+                                                                      <th>Last Updated</th>
                                                                     </tr>
                                                                   </thead>
                                                                   <tbody>
-                                                                  @foreach ($users as $user)
+                                                                  @foreach ($tickets as $ticket)
                                                                 <tr>
-                                                                    <td><img src="{{ asset('capstone/Template/assets/images/')}}/{{$user->user_pic}}" class="img-circle mCS_img_loaded" alt="User Image"></td>
-                                                                    <td>{{$user->username}}</td>
-                                                                    <td>{{$user->email}}</td>
-                                                                    <td>{{$user->name}}</td>
-                                                                    <td>{{$user->user_type}}</td>
-                                                                    <td>
-                                                                        <?php
-                                                                            $count =DB::table('location_assigment')->where('user_id',$user->id)->count('id');
 
-                                                                        ?>
-                                                                        @if($count > 0 )
-                                                                            <?php $assigned= DB::table('location_assigment')->where('location_assigment.user_id',$user->id)
-                                                                              ->join('locations','location_assigment.location_id','=','locations.id')->select('locations.*')->first(['company','location']);
-                                                                              ?>
-                                                                              {{$assigned->company}} -  {{$assigned->location}}
-
-                                                                            @else
-                                                                                N/A
+                                                                      <td>
+                                                                        <a href="{{ url('feedbacks/'. $ticket->ticket_id) }}">
+                                                                          #{{ $ticket->ticket_id }} - {{ $ticket->title }}
+                                                                        </a>
+                                                                      </td>
+                                                                        @if(Auth::user()->user_type=='management')
+                                                                        <td>{{DB::table('users')->where('id',$ticket->user_id)->first(['name'])->name}}</td>
                                                                         @endif
-                                                                    </td>
-                                                                    <td><a href="{{URL::to('setup/employee')}}/{{$user->id}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
-                                                                      <a href="{{URL::to('setup/employee/show')}}/{{$user->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-                                                                    </td>
-                                                                </tr>
+
+                                                                      <td>{{ $ticket->updated_at }}</td>
+                                                                    </tr>
                                                                   @endforeach
                                                                   </tbody>
                                                                 </table>
 
-                                                              </div>
-
+                                                                {{ $tickets->render() }}
+                                                              @endif
                                                             </div>
                                                         </div>
                                                     </div>

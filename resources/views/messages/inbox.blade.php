@@ -22,7 +22,7 @@
                                                       <i class="fa fa-angle-right"></i>
                                                   </li>
                                                   <li class="active">
-                                                    Employees
+                                                      Sent
                                                   </li>
                                               </ol>
                                           </div>
@@ -30,7 +30,8 @@
                                   </div>
                               </div>
                 </div>
-                    <div class="container-fluid">
+
+                          <div class="container-fluid">
                                                 <!-- state start-->
                                                 <div class="row">
                                                     <div class=" col-12">
@@ -38,57 +39,34 @@
                                                             <div class="card-header">
                                                                 <div class="card-title">
 
-                                                                      <a href="/setup/users/create" class="btn btn-success pull-right">Add User</a>
                                                                 </div>
-
                                                             </div>
                                                             <div class="card-body">
                                                                 <div id="msg"></div>
-                                                                <div class="table-responsive">
+
+
                                                               <table id="bs4-table" class="table table-bordered table-striped">
                                                                   <thead>
                                                                     <tr>
-                                                                      <th>Profile Pic</th>
-                                                                      <th>Username</th>
-                                                                      <th>Email</th>
-                                                                      <th>Name</th>
-                                                                      <th>User Type</th>
-                                                                      <th>Assigned To</th>
-                                                                      <th>Action</th>
+                                                                      <th>Reciever</th>
+                                                                      <th>Message</th>
+
+                                                                      <th>Date</th>
                                                                     </tr>
                                                                   </thead>
                                                                   <tbody>
-                                                                  @foreach ($users as $user)
-                                                                <tr>
-                                                                    <td><img src="{{ asset('capstone/Template/assets/images/')}}/{{$user->user_pic}}" class="img-circle mCS_img_loaded" alt="User Image"></td>
-                                                                    <td>{{$user->username}}</td>
-                                                                    <td>{{$user->email}}</td>
-                                                                    <td>{{$user->name}}</td>
-                                                                    <td>{{$user->user_type}}</td>
-                                                                    <td>
-                                                                        <?php
-                                                                            $count =DB::table('location_assigment')->where('user_id',$user->id)->count('id');
+                                                                  @foreach ($messages as $inbox)
+                                                                    <tr>
+                                                                        <td>{{DB::table('users')->where('id',$inbox->to_user)->first(['name'])->name}}</td>
+                                                                        <td>{{$inbox->message}}</td>
+                                                                        <td>{{date('F d, Y h:s A',strtotime($inbox->created_at))}}</td>
+                                                                    </tr>
 
-                                                                        ?>
-                                                                        @if($count > 0 )
-                                                                            <?php $assigned= DB::table('location_assigment')->where('location_assigment.user_id',$user->id)
-                                                                              ->join('locations','location_assigment.location_id','=','locations.id')->select('locations.*')->first(['company','location']);
-                                                                              ?>
-                                                                              {{$assigned->company}} -  {{$assigned->location}}
-
-                                                                            @else
-                                                                                N/A
-                                                                        @endif
-                                                                    </td>
-                                                                    <td><a href="{{URL::to('setup/employee')}}/{{$user->id}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
-                                                                      <a href="{{URL::to('setup/employee/show')}}/{{$user->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-                                                                    </td>
-                                                                </tr>
                                                                   @endforeach
                                                                   </tbody>
                                                                 </table>
 
-                                                              </div>
+
 
                                                             </div>
                                                         </div>

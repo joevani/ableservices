@@ -42,7 +42,6 @@
                                                                  <a href="{{ url('new_ticket') }}" class="btn btn-success pull-right">Submit Issue/Concern</a>
 
                                                                 </div>
-
                                                             </div>
                                                             <div class="card-body">
                                                                 <div id="msg"></div>
@@ -55,6 +54,7 @@
                                                                       <th>Category</th>
                                                                       <th>Title</th>
                                                                       <th>Status</th>
+                                                                      <th>Resolved By</th>
                                                                       <th>Last Updated</th>
                                                                     </tr>
                                                                   </thead>
@@ -79,6 +79,14 @@
                                                                       @else
                                                                         <span class="label label-danger">{{ $ticket->status }}</span>
                                                                       @endif
+                                                                      </td>
+                                                                      <td>
+                                                                        @if ($ticket->status === 'Open')
+                                                                           PENDING
+                                                                          @endif
+                                                                        @if($ticket->status === 'Solved')
+                                                                          {{DB::table('users')->where('id',$ticket->resolved_by)->first(['name'])->name}}
+                                                                        @endif 
                                                                       </td>
                                                                       <td>{{ $ticket->updated_at }}</td>
                                                                     </tr>

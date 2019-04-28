@@ -22,7 +22,7 @@
                                                       <i class="fa fa-angle-right"></i>
                                                   </li>
                                                   <li class="active">
-                                                    Create Feedback
+                                                    Add Location
                                                   </li>
                                               </ol>
                                           </div>
@@ -30,7 +30,6 @@
                                   </div>
                               </div>
                 </div>
-
                 <div class="container-fluid">
                                       <!-- state start-->
                                       <div class="row">
@@ -42,35 +41,29 @@
                                                   </div>
                                                   <div class="card-body">
                                                     @include('includes.flash')
-                                                        @if ( $errors->any() )
+                                                      @if ( $errors->any() )
                                                                @foreach ($errors->all() as $error)
                                                                 <div class="alert alert-danger">{{$error}}</div>
                                                               @endforeach
                                                       @endif
-                                                      <form class="form-horizontal" role="form" method="POST" action="{{ url('/feedbacks/create') }}" enctype="multipart/form-data">
+                                                      <form class="form-horizontal" role="form" method="POST" action="{{ url('/setup/locations/create') }}" enctype="multipart/form-data">
                                                      {!! csrf_field() !!}
 
-                                                     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                                         <label for="title" class="col-md-4 control-label">Title</label>
-
-                                                             <input id="title" type="text" class="form-control" name="subject" value="{{ old('title') }}">
-
-                                                             @if ($errors->has('title'))
-                                                                 <span class="help-block">
-                                                                     <strong>{{ $errors->first('title') }}</strong>
-                                                                 </span>
-                                                             @endif
-
+                                                     <div class="form-control">
+                                                          <label>Company Name</label>
+                                                          <input class="form-control" name="company">
                                                      </div>
-
                                                      <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
-                                                         <label for="message" class="col-md-4 control-label">Content</label>
-                                                             <textarea rows="10" id="message" class="form-control" name="content"></textarea>
+                                                         <label for="message" class="col-md-4 control-label">Address</label>
+
+                                                             <textarea rows="10" id="message" class="form-control" name="location"></textarea>
+
                                                              @if ($errors->has('message'))
                                                                  <span class="help-block">
                                                                      <strong>{{ $errors->first('message') }}</strong>
                                                                  </span>
                                                              @endif
+
                                                      </div>
 
                                                      <div class="form-group">

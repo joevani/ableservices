@@ -22,7 +22,7 @@
                                                       <i class="fa fa-angle-right"></i>
                                                   </li>
                                                   <li class="active">
-                                                    Employees
+                                                    Client
                                                   </li>
                                               </ol>
                                           </div>
@@ -30,7 +30,8 @@
                                   </div>
                               </div>
                 </div>
-                    <div class="container-fluid">
+
+                          <div class="container-fluid">
                                                 <!-- state start-->
                                                 <div class="row">
                                                     <div class=" col-12">
@@ -38,7 +39,7 @@
                                                             <div class="card-header">
                                                                 <div class="card-title">
 
-                                                                      <a href="/setup/users/create" class="btn btn-success pull-right">Add User</a>
+                                                                      <a href="/setup/clients/create" class="btn btn-success pull-right">Add Client</a>
                                                                 </div>
 
                                                             </div>
@@ -53,7 +54,7 @@
                                                                       <th>Email</th>
                                                                       <th>Name</th>
                                                                       <th>User Type</th>
-                                                                      <th>Assigned To</th>
+                                                                      <th>Company</th>
                                                                       <th>Action</th>
                                                                     </tr>
                                                                   </thead>
@@ -65,23 +66,9 @@
                                                                     <td>{{$user->email}}</td>
                                                                     <td>{{$user->name}}</td>
                                                                     <td>{{$user->user_type}}</td>
-                                                                    <td>
-                                                                        <?php
-                                                                            $count =DB::table('location_assigment')->where('user_id',$user->id)->count('id');
-
-                                                                        ?>
-                                                                        @if($count > 0 )
-                                                                            <?php $assigned= DB::table('location_assigment')->where('location_assigment.user_id',$user->id)
-                                                                              ->join('locations','location_assigment.location_id','=','locations.id')->select('locations.*')->first(['company','location']);
-                                                                              ?>
-                                                                              {{$assigned->company}} -  {{$assigned->location}}
-
-                                                                            @else
-                                                                                N/A
-                                                                        @endif
-                                                                    </td>
-                                                                    <td><a href="{{URL::to('setup/employee')}}/{{$user->id}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
-                                                                      <a href="{{URL::to('setup/employee/show')}}/{{$user->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                                                    <td>{{$user->company}}</td>
+                                                                    <td><a href="{{URL::to('setup/client')}}/{{$user->id}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                                                                      <a href="{{URL::to('setup/client/show')}}/{{$user->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                                                     </td>
                                                                 </tr>
                                                                   @endforeach

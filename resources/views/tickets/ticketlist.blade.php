@@ -50,7 +50,9 @@
                                                                     <th>Category</th>
                                                                     <th>Title</th>
                                                                     <th>Status</th>
+                                                                    <th>Resolved By</th>
                                                                     <th>Last Updated</th>
+
                                                                     <th>Actions</th>
                                                                   </tr>
                                                                 </thead>
@@ -76,7 +78,16 @@
                                                                       <span class="label label-danger">{{ $ticket->status }}</span>
                                                                     @endif
                                                                     </td>
+                                                                    <td>
+                                                                      @if ($ticket->status === 'Open')
+                                                                         PENDING
+                                                                        @endif
+                                                                      @if($ticket->status === 'Solved')
+                                                                        {{DB::table('users')->where('id',$ticket->resolved_by)->first(['name'])->name}}
+                                                                      @endif
+                                                                    </td>
                                                                     <td>{{ $ticket->updated_at }}</td>
+
                                                                     <td>
                                                                     @if(Auth::user()->user_type=='team lead')
                                                                           @if($ticket->is_escalated_to_supervisor == 0)
@@ -103,7 +114,7 @@
                                                                           </form>
                                                                           <form action="{{ url('escalate_ticket_admin/' . $ticket->ticket_id) }}" method="POST">
                                                                             {!! csrf_field() !!}
-                                                                            <button type="submit" class="btn btn-error btn-sm">Escalate</button>
+                                                                            <button type="submit" class="btn btn-error btn-sm">Escalate to management</button>
                                                                           </form>
                                                                           @endif
                                                                         @endif

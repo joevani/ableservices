@@ -7,6 +7,7 @@ use Session;
 use DB;
 use Validator;
 use Auth;
+use PDF;
 
 class MemoController extends Controller
 {
@@ -63,5 +64,16 @@ class MemoController extends Controller
                     ]);
 
       return redirect()->back()->with("status", "Memo Submitted");
+  }
+  public function viewMemo($id) {
+
+      $memo =DB::table('memo')->where('id',$id)->first(['id','user_id','subject','content','created_at','created_by']);
+      $data   = [
+
+          'memo' => $memo,
+      ];
+      $pdf = PDF::loadView('memo.memo', $data);
+      return $pdf->download('memo.pdf');
+
   }
 }

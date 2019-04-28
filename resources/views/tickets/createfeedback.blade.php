@@ -18,7 +18,7 @@
                                               <ol class="breadcrumb">
                                                   <li>
                                                       <i class="fa fa-home"></i>
-                                                      <a class="parent-item" href="">Home</a>
+                                                      <a class="parent-item" href="index.html">Home</a>
                                                       <i class="fa fa-angle-right"></i>
                                                   </li>
                                                   <li class="active">
@@ -38,39 +38,44 @@
                                               <div class="card card-shadow mb-4">
                                                   <div class="card-header">
                                                       <div class="card-title">
+
+
                                                       </div>
+
                                                   </div>
                                                   <div class="card-body">
-                                                    @include('includes.flash')
-                                                        @if ( $errors->any() )
-                                                               @foreach ($errors->all() as $error)
-                                                                <div class="alert alert-danger">{{$error}}</div>
-                                                              @endforeach
-                                                      @endif
-                                                      <form class="form-horizontal" role="form" method="POST" action="{{ url('/feedbacks/create') }}" enctype="multipart/form-data">
+                                                         @include('includes.flash')
+                                                      <form class="form-horizontal" role="form" method="POST" action="{{ url('feedbacks/create') }}">
                                                      {!! csrf_field() !!}
 
                                                      <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                                          <label for="title" class="col-md-4 control-label">Title</label>
 
-                                                             <input id="title" type="text" class="form-control" name="subject" value="{{ old('title') }}">
+                                                         <div class="col-md-6">
+                                                             <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}">
 
                                                              @if ($errors->has('title'))
                                                                  <span class="help-block">
                                                                      <strong>{{ $errors->first('title') }}</strong>
                                                                  </span>
                                                              @endif
-
+                                                         </div>
                                                      </div>
+                                                        <input id="title" type="hidden" class="form-control" name="category" value="3">
+                                                         <input id="title" type="hidden" class="form-control" name="priority" value="low">
 
                                                      <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
-                                                         <label for="message" class="col-md-4 control-label">Content</label>
-                                                             <textarea rows="10" id="message" class="form-control" name="content"></textarea>
+                                                         <label for="message" class="col-md-4 control-label">Message</label>
+
+                                                         <div class="col-md-6">
+                                                             <textarea rows="10" id="message" class="form-control" name="message"></textarea>
+
                                                              @if ($errors->has('message'))
                                                                  <span class="help-block">
                                                                      <strong>{{ $errors->first('message') }}</strong>
                                                                  </span>
                                                              @endif
+                                                         </div>
                                                      </div>
 
                                                      <div class="form-group">
@@ -86,12 +91,16 @@
                                           </div>
                                       </div>
                                       <!-- state end-->
-                                </div>
-                      </main>
+                                  </div>
+
+    </main>
 
 @endsection
 
+
+
 @section('scripts')
+
 <script src="{{ asset('capstone/Template/assets/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset('capstone/Template/assets/js/dataTables.bootstrap4.min.js')}}"></script>
 

@@ -28,7 +28,7 @@
          <div class="col-12 d-flex flex-wrap plr">
             <div class="fl-col">
             <div class="course_box">
-              <a href="course-list.html">
+              <a href="{{URL::to('messages/inbox')}}">
                 <div class="icon_relative">
                   <i class="la la-users" aria-hidden="true"></i>
                   <span>Users</span>
@@ -39,18 +39,17 @@
           </div>
           <div class="fl-col">
             <div class="course_box">
-              <a href="">
+              <a href="{{URL::to('memo')}}">
                 <div class="icon_relative">
                   <i class="la la-desktop" aria-hidden="true"></i>
                   <span>Memos</span>
                 </div>
-
               </a>
             </div>
           </div>
           <div class="fl-col">
             <div class="course_box">
-              <a href="">
+              <a href="{{URL::to('setup/supervisors')}}">
                 <div class="icon_relative">
                   <i class="la la-list" aria-hidden="true"></i>
                   <span>Supervisor Assignment</span>
@@ -60,7 +59,7 @@
           </div>
           <div class="fl-col">
             <div class="course_box">
-              <a href="course-list.html">
+              <a href="{{URL::to('setup/teamleaders')}}">
                 <div class="icon_relative">
                   <i class="la la-flask" aria-hidden="true"></i>
                   <span>Team Lead Assignment</span>
@@ -69,14 +68,6 @@
             </div>
           </div>
 
-
-
-
-
-
-
-
-
           </div>
 
 
@@ -84,7 +75,183 @@
         </div>
 
 
-        @else
+        @endif
+
+
+              @if(Auth::user()->user_type=='team lead')
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <div class="heading_view">
+                      <h2>Quick Access</h2>
+                    </div>
+                  </div>
+                 <div class="col-12 d-flex flex-wrap plr">
+                    <div class="fl-col">
+                    <div class="course_box">
+                      <a href="{{URL::to('workers')}}">
+                        <div class="icon_relative">
+                          <i class="la la-users" aria-hidden="true"></i>
+                          <span>Workers</span>
+                        </div>
+
+                      </a>
+                    </div>
+                  </div>
+                  <div class="fl-col">
+                    <div class="course_box">
+                      <a href="{{URL::to('memo')}}">
+                        <div class="icon_relative">
+                          <i class="la la-desktop" aria-hidden="true"></i>
+                          <span>Memos</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="fl-col">
+                    <div class="course_box">
+                      <a href="{{URL::to('messages/inbox')}}">
+                        <div class="icon_relative">
+                          <i class="fa fa-comment-o" aria-hidden="true"></i>
+                          <span>Messages</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="fl-col">
+                    <div class="course_box">
+                      <a href="{{URL::to('profile')}}">
+                        <div class="icon_relative">
+                          <i class="fa fa-user" aria-hidden="true"></i>
+                          <span>Profile</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+                  </div>
+
+
+
+                </div>
+
+            @endif
+
+
+
+                          @if(Auth::user()->user_type=='supervisor')
+                            <div class="row">
+                              <div class="col-12 mb-3">
+                                <div class="heading_view">
+                                  <h2>Quick Access</h2>
+                                </div>
+                              </div>
+                             <div class="col-12 d-flex flex-wrap plr">
+                                <div class="fl-col">
+                                <div class="course_box">
+                                  <a href="{{URL::to('news')}}">
+                                    <div class="icon_relative">
+                                      <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                      <span>News</span>
+                                    </div>
+
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="fl-col">
+                                <div class="course_box">
+                                  <a href="{{URL::to('memo')}}">
+                                    <div class="icon_relative">
+                                      <i class="la la-desktop" aria-hidden="true"></i>
+                                      <span>Memos</span>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="fl-col">
+                                <div class="course_box">
+                                  <a href="{{URL::to('messages/inbox')}}">
+                                    <div class="icon_relative">
+                                      <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                      <span>Messages</span>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="fl-col">
+                                <div class="course_box">
+                                  <a href="{{URL::to('profile')}}">
+                                    <div class="icon_relative">
+                                      <i class="fa fa-user" aria-hidden="true"></i>
+                                      <span>Profile</span>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+
+                              </div>
+
+                            </div>
+
+                        @endif
+
+
+                                      @if(Auth::user()->user_type=='worker')
+                                        <div class="row">
+                                          <div class="col-12 mb-3">
+                                            <div class="heading_view">
+                                              <h2>Quick Access</h2>
+                                            </div>
+                                          </div>
+                                         <div class="col-12 d-flex flex-wrap plr">
+                                            <div class="fl-col">
+                                            <div class="course_box">
+                                              <a href="{{URL::to('news')}}">
+                                                <div class="icon_relative">
+                                                  <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                                  <span>News</span>
+                                                </div>
+
+                                              </a>
+                                            </div>
+                                          </div>
+                                          <div class="fl-col">
+                                            <div class="course_box">
+                                              <a href="{{URL::to('memo')}}">
+                                                <div class="icon_relative">
+                                                  <i class="la la-desktop" aria-hidden="true"></i>
+                                                  <span>Memos</span>
+                                                </div>
+                                              </a>
+                                            </div>
+                                          </div>
+                                          <div class="fl-col">
+                                            <div class="course_box">
+                                              <a href="{{URL::to('messages/inbox')}}">
+                                                <div class="icon_relative">
+                                                  <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                                  <span>Messages</span>
+                                                </div>
+                                              </a>
+                                            </div>
+                                          </div>
+                                          <div class="fl-col">
+                                            <div class="course_box">
+                                              <a href="{{URL::to('profile')}}">
+                                                <div class="icon_relative">
+                                                  <i class="fa fa-user" aria-hidden="true"></i>
+                                                  <span>Profile</span>
+                                                </div>
+                                              </a>
+                                            </div>
+                                          </div>
+
+                                          </div>
+
+
+                                        </div>
+
+                                    @endif
+        @if(Auth::user()->user_type=='client')
           <div class="row">
             <div class="col-12 mb-3">
               <div class="heading_view">
@@ -110,34 +277,32 @@
                     <i class="la la-desktop" aria-hidden="true"></i>
                     <span>Submit Feedback</span>
                   </div>
-
                 </a>
               </div>
             </div>
 
-
             <div class="fl-col">
               <div class="course_box">
-                <a href="{{URL::to('memo')}}">
+                <a href="{{URL::to('messages/inbox')}}">
                   <div class="icon_relative">
                     <i class="la la-list" aria-hidden="true"></i>
-                    <span>Memos</span>
-                  </div>
-
-                </a>
-              </div>
-            </div>
-            <div class="fl-col">
-              <div class="course_box">
-                <a href="">
-                  <div class="icon_relative">
-                    <i class="la la-flask" aria-hidden="true"></i>
                     <span>Messages</span>
                   </div>
-
                 </a>
               </div>
             </div>
+
+            <div class="fl-col">
+              <div class="course_box">
+                <a href="{{URL::to('profile')}}">
+                  <div class="icon_relative">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>Profile</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+
 
             </div>
 
@@ -164,10 +329,10 @@
                 @if(count($news) > 0)
                     @foreach($news as $new)
             <div class="items_test">
-              <a href="courses-details.html">
+              <a href="{{URL::to('news')}}/{{$new->id}}">
                 <div class="say_client">
-                  <img src="{asset('capstone/Template/assets/images')}}/{{$new->thumbnail}}" alt="" />
-                  <span class="price_top bg_red">$ 48</span>
+                  <img src="{{asset('capstone/Template/assets/images')}}/{{$new->thumbnail}}" style="width:100px;height:100px;" alt="" />
+
                 </div>
                 <div class="saying_box">
                   <h3>{{$new->subject}}</h3>

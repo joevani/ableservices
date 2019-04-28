@@ -24,14 +24,11 @@ class TicketsController extends Controller
         if(Auth::user()->user_type=='team lead') {
           $members = [];
 					//
-
 					$team = DB::table('team_lead_members')->where('teamlead_userid',Auth::user()->id)->get();
 					foreach ($team as $key => $value) {
-											array_push($members,$team->worker_userid);
+											array_push($members,$value->worker_userid);
 									}
-
-           $tickets    = Ticket::whereIn('user_id',$members)
-
+           $tickets    = Ticket::where('type',0)->whereIn('user_id',$members)
 													->paginate(10);
            $categories = Category::all();
            return view('tickets.ticketlist', compact('tickets', 'categories'));
@@ -45,18 +42,15 @@ class TicketsController extends Controller
 												$teamMembers = DB::table('team_lead_members')->where('teamlead_userid',$value->teamlead_userid)->first(['worker_userid']);
 													array_push($members,$teamMembers->worker_userid);
 											}
-
-
-              $tickets    = Ticket::whereIn('user_id',$members)->paginate(10);
+              $tickets    = Ticket::where('type',0)->whereIn('user_id',$members)->paginate(10);
               $categories = Category::all();
               return view('tickets.ticketlist', compact('tickets', 'categories'));
         }
         if(Auth::user()->user_type=='management'){
-              $tickets    = Ticket::paginate(10);
+              $tickets    = Ticket::where('type',0)->paginate(10);
               $categories = Category::all();
               return view('tickets.ticketlist', compact('tickets', 'categories'));
         }
-
     }
     /**
      * Display all tickets by a user.
@@ -65,7 +59,7 @@ class TicketsController extends Controller
      */
     public function userTickets()
     {
-        $tickets = Ticket::where('user_id', Auth::user()->id)->paginate(10);
+        $tickets = Ticket::where('user_id', Auth::user()->id)->where('type',0)->paginate(10);
         $categories = Category::all();
         return view('tickets.index', compact('tickets', 'categories'));
     }
@@ -134,8 +128,10 @@ class TicketsController extends Controller
     {
         $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
         $ticket->status = 'Solved';
+				$ticket->resolved_by = Auth::user()->id;
         $ticket->save();
         $ticketOwner = $ticket->user;
+
         return redirect()->back()->with("status", "The ticket has been closed.");
     }
 
@@ -157,4 +153,67 @@ class TicketsController extends Controller
         $ticketOwner = $ticket->user;
         return redirect()->back()->with("status", "The ticket has been escalated to management.");
     }
+		public function storeFeedback(Request $request)
+		{
+				$this->validate($request, [
+						'title'     => 'required',
+						'category'  => 'required',
+						'priority'  => 'required',
+						'message'   => 'required'
+				]);
+				$ticket = new Ticket([
+						'title'     => $request->input('title'),
+						'user_id'   => Auth::user()->id,
+						'ticket_id' => strtoupper(str_random(10)),
+						'category_id'  => $request->input('category'),
+						'priority'  => $request->input('priority'),
+						'message'   => $request->input('message'),
+						'status'    => "Open",
+						'type'			=> 1
+				]);
+				if($ticket->save()) {
+							return redirect()->back()->with("status", "A feedback with ID: #$ticket->ticket_id has been opened.");
+				}
+				else {
+							return redirect()->back()->with("status", "Something went wrong");
+				}
+
+
+		}
+		public function userFeedbacks()
+		{
+
+
+				$tickets = Ticket::where('user_id', Auth::user()->id)->where('type',1)->paginate(10);
+				$categories = Category::all();
+				return view('tickets.feedbacks', compact('tickets', 'categories'));
+		}
+		public function feedbackList(){
+
+			if(Auth::user()->user_type=='client') {
+				$tickets = Ticket::where('user_id',Auth::user()->id)->where('type',1)->paginate(10);
+				$categories = Category::all();
+				return view('tickets.feedbacks', compact('tickets', 'categories'));
+			}
+			else {
+				$tickets = Ticket::where('type',1)->paginate(10);
+				$categories = Category::all();
+				return view('tickets.feedbacks', compact('tickets', 'categories'));
+			}
+
+		}
+		public function createFeedback()
+		{
+			$categories = Category::all();
+				return view('tickets.createFeedback', compact('categories'));
+		}
+
+		public function showFeedback($ticket_id)
+		{
+
+				$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+				$comments = $ticket->comments;
+				$category = $ticket->category;
+				return view('tickets.showfeedback', compact('ticket', 'category', 'comments'));
+		}
 }

@@ -22,7 +22,7 @@
                                                       <i class="fa fa-angle-right"></i>
                                                   </li>
                                                   <li class="active">
-                                                    Create Feedback
+                                                    Add Client
                                                   </li>
                                               </ol>
                                           </div>
@@ -30,7 +30,6 @@
                                   </div>
                               </div>
                 </div>
-
                 <div class="container-fluid">
                                       <!-- state start-->
                                       <div class="row">
@@ -42,37 +41,53 @@
                                                   </div>
                                                   <div class="card-body">
                                                     @include('includes.flash')
-                                                        @if ( $errors->any() )
+                                                      @if ( $errors->any() )
                                                                @foreach ($errors->all() as $error)
                                                                 <div class="alert alert-danger">{{$error}}</div>
                                                               @endforeach
                                                       @endif
-                                                      <form class="form-horizontal" role="form" method="POST" action="{{ url('/feedbacks/create') }}" enctype="multipart/form-data">
+                                                      <form class="form-horizontal" role="form" method="POST" action="{{ url('/setup/clients/create') }}" enctype="multipart/form-data">
                                                      {!! csrf_field() !!}
-
-                                                     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                                         <label for="title" class="col-md-4 control-label">Title</label>
-
-                                                             <input id="title" type="text" class="form-control" name="subject" value="{{ old('title') }}">
-
-                                                             @if ($errors->has('title'))
-                                                                 <span class="help-block">
-                                                                     <strong>{{ $errors->first('title') }}</strong>
-                                                                 </span>
-                                                             @endif
-
+                                                     <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                          <span class="input-group-text" id="inputGroupFileAddon01">Profile Pic</span>
+                                                        </div>
+                                                        <div class="custom-file">
+                                                          <input type="file" class="custom-file-input" name="photo" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                        </div>
+                                                      </div>
+                                                      <hr>
+                                                     <div class="form-group">
+                                                          <label>Username</label>
+                                                          <input type="text" class="form-control" name="username">
                                                      </div>
-
-                                                     <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
-                                                         <label for="message" class="col-md-4 control-label">Content</label>
-                                                             <textarea rows="10" id="message" class="form-control" name="content"></textarea>
-                                                             @if ($errors->has('message'))
-                                                                 <span class="help-block">
-                                                                     <strong>{{ $errors->first('message') }}</strong>
-                                                                 </span>
-                                                             @endif
+                                                     <div class="form-group">
+                                                          <label>Fullname</label>
+                                                          <input type="text" class="form-control" name="name">
                                                      </div>
-
+                                                     <div class="form-group">
+                                                          <label>Email</label>
+                                                          <input type="email" class="form-control" name="email">
+                                                     </div>
+                                                     <div class="form-group">
+                                                          <label>Birthday</label>
+                                                          <input type="date" class="form-control" name="dob">
+                                                     </div>
+                                                     <div class="form-group">
+                                                          <label>Company</label>
+                                                          <input type="text" class="form-control" name="company">
+                                                     </div>
+                                                     <div class="form-group">
+                                                          <label>Address</label>
+                                                          <input type="text" class="form-control" name="address">
+                                                     </div>
+                                                     <div class="form-group">
+                                                       <label for="message-text" class="col-form-label">User Type :</label>
+                                                       <select class="form-control" name="user_type" >
+                                                         <option value="client">Client</option>
+                                                       </select>
+                                                     </div>
                                                      <div class="form-group">
                                                          <div class="col-md-6 col-md-offset-4">
                                                              <button type="submit" class="btn btn-info">
@@ -88,7 +103,6 @@
                                       <!-- state end-->
                                 </div>
                       </main>
-
 @endsection
 
 @section('scripts')

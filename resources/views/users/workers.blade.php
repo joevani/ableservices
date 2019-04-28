@@ -22,7 +22,7 @@
                                                       <i class="fa fa-angle-right"></i>
                                                   </li>
                                                   <li class="active">
-                                                    Employees
+                                                    Workers
                                                   </li>
                                               </ol>
                                           </div>
@@ -38,7 +38,7 @@
                                                             <div class="card-header">
                                                                 <div class="card-title">
 
-                                                                      <a href="/setup/users/create" class="btn btn-success pull-right">Add User</a>
+                                                                      <!-- <a href="/setup/users/create" class="btn btn-success pull-right">Add User</a> -->
                                                                 </div>
 
                                                             </div>
@@ -54,7 +54,6 @@
                                                                       <th>Name</th>
                                                                       <th>User Type</th>
                                                                       <th>Assigned To</th>
-                                                                      <th>Action</th>
                                                                     </tr>
                                                                   </thead>
                                                                   <tbody>
@@ -80,9 +79,7 @@
                                                                                 N/A
                                                                         @endif
                                                                     </td>
-                                                                    <td><a href="{{URL::to('setup/employee')}}/{{$user->id}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
-                                                                      <a href="{{URL::to('setup/employee/show')}}/{{$user->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-                                                                    </td>
+
                                                                 </tr>
                                                                   @endforeach
                                                                   </tbody>

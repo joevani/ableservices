@@ -9,7 +9,7 @@
                                             <ol class="breadcrumb">
                                                 <li>
                                                     <i class="fa fa-home"></i>
-                                                    <a class="parent-item" href="{{URL::to('dashboard')}}">Home</a>
+                                                    <a class="parent-item" href="/dashboard">Home</a>
                                                     <i class="fa fa-angle-right"></i>
                                                 </li>
                                                 <li class="active">
@@ -29,7 +29,7 @@
                                         <div class="card card-shadow mb-4">
                                             <div class="card-header">
                                                 <div class="card-title">
-                                                <button type="button"  data-toggle="modal" data-target="#exampleModal4" data-whatever="@mdo" class="btn btn-success pull-right">Add User</button>
+                                                <a href="/setup/users/create" class="btn btn-success pull-right">Add User</a>
                                                 </div>
                                                 <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true" style="display: none;">
                                                     <div class="modal-dialog" role="document">

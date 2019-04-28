@@ -22,7 +22,7 @@
                                                       <i class="fa fa-angle-right"></i>
                                                   </li>
                                                   <li class="active">
-                                                      Memo
+                                                    Locations
                                                   </li>
                                               </ol>
                                           </div>
@@ -37,28 +37,31 @@
                                                         <div class="card card-shadow mb-4">
                                                             <div class="card-header">
                                                                 <div class="card-title">
+                                                                  <a href="{{URL::to('setup/locations/create')}}" class="btn btn-success btn-sm pull-right" >Add Location</a>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
                                                              @include('includes.flash')
-                                                              @if (count($memo) == 0)
-                                                          <p>There are currently no issues.</p>
+                                                             @if ($locations->isEmpty())
+                                                          <p>There are currently no locations.</p>
                                                             @else
                                                               <table id="bs4-table" class="table table-bordered table-striped">
                                                                 <thead>
                                                                   <tr>
-                                                                    <th>Subject</th>
-                                                                    <th>Date </th>
-                                                                    <th>Action</th>
+                                                                    <th>Company</th>
+                                                                    <th>Address</th>
+
+                                                                    <th>Actions</th>
                                                                   </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                              @foreach ($memo as $memo)
-                                                                      <tr>
-                                                                        <td>{{$memo->subject}}</td>
-                                                                        <td>{{date('F d, Y',strtotime($memo->created_at))}}</td>
-                                                                        <td><a href="{{URL::to('memo')}}/{{$memo->id}}" class="btn btn-info"><i class="fa fa-download"></i></a></td>
-                                                                      </tr>
+
+                                                              @foreach ($locations as $loc)
+                                                                    <tr>
+                                                                        <td>{{$loc->company}}</td>
+                                                                        <td>{{$loc->location}}</td>
+                                                                        <td><a href="{{URL::to('setup/locations/')}}/{{$loc->id}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> EDIT</a></td>
+                                                                    </tr>
                                                                 @endforeach
                                                                 </tbody>
                                                               </table>
