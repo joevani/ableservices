@@ -198,7 +198,7 @@ class UserController extends Controller
   public function leaders() {
     $users = DB::table('supervisor_members')
                               ->join('users','supervisor_members.teamlead_userid','=','users.id')
-                              ->where('supervisor_members.supervisor_userid',Aut::user()->id)
+                              ->where('supervisor_members.supervisor_userid',Auth::user()->id)
                               ->select('users.*','supervisor_members.id as sv_id')
                               ->get();
 
