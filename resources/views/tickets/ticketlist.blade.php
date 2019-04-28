@@ -89,6 +89,7 @@
                                                                     <td>{{ $ticket->updated_at }}</td>
 
                                                                     <td>
+                                                                  @if ($ticket->status != 'Solved')
                                                                     @if(Auth::user()->user_type=='team lead')
                                                                           @if($ticket->is_escalated_to_supervisor == 0)
                                                                                 <a href="{{ url('tickets/' . $ticket->ticket_id) }}" class="btn btn-primary btn-sm">Comment</a>
@@ -130,6 +131,8 @@
 
                                                                                 @endif
                                                                           @endif
+                                                                      @endif
+
                                                                       @endif
                                                                     </td>
                                                                   </tr>
