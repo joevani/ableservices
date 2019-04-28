@@ -29,6 +29,7 @@ Route::post('setup/users/getinfo','UserController@getUserinfo');
 
 
 Route::get('workers','UserController@workerss');
+Route::get('teamleaders','UserController@leaders');
 
 Route::get('setup/supervisors','UserController@superVisorsView');
 Route::get('setup/supervisors/list','UserController@superVisors');

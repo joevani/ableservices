@@ -195,4 +195,16 @@ class UserController extends Controller
             return view('users.workers',compact('users'));
   }
 
+  public function leaders() {
+
+    $users = DB::table('supervisor_members')
+                              ->join('users','supervisor_members.teamlead_userid','=','users.id')
+                              ->where('supervisor_members.teamlead_userid',Auth::user()->id)
+                              ->select('users.*','supervisor_members.id as sv_id')
+                              ->get();
+
+            return view('users.workers',compact('users'));
+  }
+
+
 }
