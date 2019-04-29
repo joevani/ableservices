@@ -81,7 +81,7 @@
                                                                         @endif
                                                                     </td>
                                                                     <td><a href="{{URL::to('setup/employee')}}/{{$user->id}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
-                                                                      <a href="{{URL::to('setup/employee/show')}}/{{$user->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                                                      <a href="{{URL::to('setup/employee')}}/{{$user->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                                                     </td>
                                                                 </tr>
                                                                   @endforeach
