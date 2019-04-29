@@ -43,7 +43,7 @@
                       @foreach($news as $new)
                       <div class="media brdr-b mb-3 pb-3">
                         <div class="course_picture">
-                          <a href="{{URL::to('news/')}}/{{$new->id}}"><img class="align-self-center mr-3" src="{{asset('capstone/Template/assets/images')}}/{{$new->thumbnail}}" alt=""></a>
+                          <a href="{{URL::to('news/')}}/{{$new->id}}"><img class="align-self-center mr-3" width="50" height="50" src="{{asset('capstone/Template/assets/images')}}/{{$new->thumbnail}}" alt=""></a>
                         </div>
                         <div class="media-body">
                           <p class="mb-0">

@@ -60,7 +60,7 @@
                                                                   <tbody>
                                                                   @foreach ($users as $user)
                                                                 <tr>
-                                                                    <td><img src="{{ asset('capstone/Template/assets/images/')}}/{{$user->user_pic}}" class="img-circle mCS_img_loaded" alt="User Image"></td>
+                                                                    <td><img src="{{ asset('capstone/Template/assets/images/')}}/{{$user->user_pic}}" class="img-circle mCS_img_loaded" width="50" height="50" alt="User Image"></td>
                                                                     <td>{{$user->username}}</td>
                                                                     <td>{{$user->email}}</td>
                                                                     <td>{{$user->name}}</td>

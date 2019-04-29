@@ -64,8 +64,11 @@
 					@endif
 
 					@if(Auth::user()->user_type !='client')
+					<?php
+						$mem = DB::table('memo')->where('user_id',Auth::user()->id)->where('is_read',0)->count('id');
+					 ?>
 					<li class="menu_sub">
-						<a href="#"> <i class="fa fa-table"></i> <span>Memos </span> <span class="icon-arrow-down styleicon"></span>  </a>
+						<a href="#"> <i class="fa fa-table"></i> <span>Memos </span> @if($mem > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $mem }}</span> @endif </a>
 						<ul class="down_menu">
 						@if(Auth::user()->user_type !="client" || Auth::user()->user_type!="worker")
 							<li>
@@ -73,20 +76,22 @@
 							</li>
 							@endif
 							<li>
-								<a href="{{URL::to('memo')}}">Memo</a>
+								<a href="{{URL::to('memo')}}">Memo @if($mem > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $mem }}</span> @endif</a>
 							</li>
 						</ul>
 					</li>
 					@endif
-
+					<?php
+						$message = DB::table('reply')->where('user_id',Auth::user()->id)->where('status',0)->count('id');
+					 ?>
           <li class="menu_sub">
-            <a href="#"> <i class="fa fa-comments-o"></i> <span>My Messages </span> <span class="icon-arrow-down styleicon"></span>  </a>
+            <a href="#"> <i class="fa fa-comments-o"></i> <span>My Messages </span> @if($message > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $message }}</span> @endif  </a>
             <ul class="down_menu">
               <li>
                 <a href="{{URL::to('messages/create')}}">Create New</a>
               </li>
               <li>
-                <a href="{{URL::to('messages/inbox')}}">Inbox </a>
+                <a href="{{URL::to('messages/inbox')}}">Inbox  @if($message > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $message }}</span> @endif  </a>
 								<a href="{{URL::to('messages/sent')}}">Sent </a>
               </li>
             </ul>
@@ -109,7 +114,11 @@
 				 @endif -->
 				 	@if(Auth::user()->user_type =='client' || Auth::user()->user_type =='management')
 						<li class="menu_sub">
-							<a href="#"> <i class="fa fa-comments-o"></i> <span>Feedbacks </span> <span class="icon-arrow-down styleicon"></span>  </a>
+							<?php
+								$feed = DB::table('feedbacks')->where('user_id',Auth::user()->id)->where('is_read',0)->count('id');
+								$feeds = DB::table('feedbacks')->where('is_read',0)->count('id');
+							 ?>
+							<a href="#"> <i class="fa fa-comments-o"></i> <span>Feedbacks </span> @if($feed > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $feed }}</span> @endif </a>
 							<ul class="down_menu">
 								@if(Auth::user()->user_type=='client')
 											<li class="menu_sub">
@@ -121,9 +130,30 @@
 									@endif
 									@if(Auth::user()->user_type=='management')
 										<li class="menu_sub">
-											<a href="{{URL::to('feedbacks')}}"> <i class="fa fa-newspaper-o"></i> <span>Client Feedbacks</span></a>
+											<a href="{{URL::to('feedbacks')}}"> <i class="fa fa-newspaper-o"></i> <span>Client Feedbacks @if($feeds > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $feeds }}</span> @endif</span></a>
 										</li>
 								@endif
+
+							</ul>
+						</li>
+
+						@endif
+
+						@if(Auth::user()->user_type =='supervisor' || Auth::user()->user_type =='management')
+						<li class="menu_sub">
+							<?php
+								$reports = DB::table('reports')->where('is_read',0)->count('id');
+
+							 ?>
+							<a href="#"> <i class="fa fa-comments-o"></i> <span>Reports </span> @if(Auth::user()->user_type =='management')@if($reports > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $reports }}</span> @endif @endif </a>
+							<ul class="down_menu">
+								<li class="menu_sub">
+									<a href="{{URL::to('reports/create')}}"> <i class="fa fa-newspaper-o"></i> <span>Create report</span></a>
+								</li>
+										<li class="menu_sub">
+											<a href="{{URL::to('reports')}}"> <i class="fa fa-newspaper-o"></i> <span>Reports </span></a>
+										</li>
+
 
 							</ul>
 						</li>

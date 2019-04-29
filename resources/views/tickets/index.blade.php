@@ -54,6 +54,7 @@
                                                                       <th>Category</th>
                                                                       <th>Title</th>
                                                                       <th>Status</th>
+                                                                        <th>Submitted By</th>
                                                                       <th>Resolved By</th>
                                                                       <th>Last Updated</th>
                                                                     </tr>
@@ -80,6 +81,7 @@
                                                                         <span class="label label-danger">{{ $ticket->status }}</span>
                                                                       @endif
                                                                       </td>
+                                                                        <td>{{DB::table('users')->where('id',$ticket->user_id)->first(['name'])->name}}</td>
                                                                       <td>
                                                                         @if ($ticket->status === 'Open')
                                                                            PENDING

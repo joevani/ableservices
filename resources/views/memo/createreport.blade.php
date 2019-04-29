@@ -22,7 +22,7 @@
                                                       <i class="fa fa-angle-right"></i>
                                                   </li>
                                                   <li class="active">
-                                                    Create Memo
+                                                    Submit report
                                                   </li>
                                               </ol>
                                           </div>
@@ -47,21 +47,13 @@
                                                                 <div class="alert alert-danger">{{$error}}</div>
                                                               @endforeach
                                                       @endif
-                                                      <form class="form-horizontal" role="form" method="POST" action="{{ url('/memo/create') }}" enctype="multipart/form-data">
+                                                      <form class="form-horizontal" role="form" method="POST" action="{{ url('/reports/submit') }}" enctype="multipart/form-data">
                                                      {!! csrf_field() !!}
-                                                     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                                         <label for="title" class="col-md-4 control-label">User/Employee</label>
-                                                         <select class="form-control" name="user_id" required>
-                                                             <option value="">Select User/Employee</option>
-                                                             @foreach($users as $user)
-                                                                <option value="{{$user->id}}">{{$user->name}}</option>
-                                                             @endforeach
-                                                         </select>
-                                                     </div>
-                                                     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                                         <label for="title" class="col-md-4 control-label">Subject</label>
 
-                                                             <input id="title" type="text" class="form-control" name="subject" value="{{ old('title') }}">
+                                                     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                                                         <label for="title" class="col-md-4 control-label">Attachment</label>
+
+                                                             <input id="title" type="file" class="form-control" name="file" value="{{ old('title') }}">
 
                                                              @if ($errors->has('title'))
                                                                  <span class="help-block">
@@ -72,7 +64,7 @@
                                                      </div>
 
                                                      <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
-                                                         <label for="message" class="col-md-4 control-label">Content</label>
+                                                         <label for="message" class="col-md-4 control-label">Comment</label>
 
 
                                                              <textarea rows="10" id="message" class="form-control" name="content"></textarea>

@@ -89,6 +89,10 @@ Route::post('setup/locations/update','LocationsController@update');
 Route::get('locations/assigment','LocationsController@assign');
 Route::post('locations/assigment','LocationsController@assignworker');
 
+Route::post('reports/submit','MemoController@submitReport');
+Route::get('reports','MemoController@viewReport');
+Route::get('reports/create','MemoController@createReport');
+
 
 
 Route::view('offline', 'offline');

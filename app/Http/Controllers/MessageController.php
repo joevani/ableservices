@@ -31,12 +31,12 @@ class MessageController extends Controller
 
     public function inbox() {
         $messages = DB::table('chat')
-                          ->join('reply','chat.id','=','reply.ticket_id')
-                          ->where('to_user',Auth::user()->id)
-                          ->orWhere('from_user',Auth::user()->id)
-                          ->select('chat.*','reply.ticket_id','reply.comment','reply.user_id')
-                          ->orderBy('reply.id','desc')
-                          ->get();
+                        ->join('reply','chat.id','=','reply.ticket_id')
+                        ->where('to_user',Auth::user()->id)
+                        ->orWhere('from_user',Auth::user()->id)
+                        ->select('chat.*','reply.ticket_id','reply.comment','reply.user_id')
+                        ->orderBy('reply.id','desc')
+                        ->get();
           return view('messages.message',compact('messages'));
     }
     /**
@@ -101,7 +101,13 @@ class MessageController extends Controller
               $chat = DB::table('reply')
                       ->where('ticket_id',$id)
                       ->first(['user_id']);
-          
+
+
+            DB::table('reply')
+                      ->where('ticket_id',$id)
+                      ->where('user_id',Auth::user()->id)
+                      ->update(['status' => 1]);
+
 
           return view('messages.show',compact('replys','message'));
     }

@@ -19,6 +19,9 @@ class FeedbackController extends Controller
                 ->orderBy('id','desc')
                 ->paginate(10);
 
+          DB::table('feedbacks')
+              ->update(['is_read' => 1]);
+
       return view('memo.feedback',compact('feedbacks'));
   }
 

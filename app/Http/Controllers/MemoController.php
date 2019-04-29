@@ -28,7 +28,10 @@ class MemoController extends Controller
                 return view('memo.index',compact('memo'));
     }
     else {
-          $memo  = DB::table('memo')
+                DB::table('memo')
+                        ->where('user_id',Auth::user()->id)
+                        ->update(['is_read' => 1]);
+                $memo  = DB::table('memo')
                       ->where('user_id',Auth::user()->id)
                       ->orderBy('id','desc')
                       ->paginate(10);
@@ -70,11 +73,63 @@ class MemoController extends Controller
 
       $memo =DB::table('memo')->where('id',$id)->first(['id','user_id','subject','content','created_at','created_by']);
       $data   = [
-
           'memo' => $memo,
       ];
       $pdf = PDF::loadView('memo.memo', $data);
       return $pdf->download('memo.pdf');
+
+  }
+
+  public function submitReport(Request $request) {
+
+    $this->validate($request, [
+                                'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,pdf,docx',
+                            ]);
+
+                        if( $request->hasFile('file') ) {
+                                          $image            = $request->file('file');
+                                          $names             = time().'.'.$image->getClientOriginalExtension();
+                                          $destinationPath  = public_path('/capstone/Template/assets/images');
+                                          $image->move($destinationPath, $names);
+
+                                          DB::table('reports')
+                                              ->insert([
+                                                  'user_id'     => Auth::user()->id,
+                                                  'subject'     => $names,
+                                                  'content'     => $request->input('content'),
+                                                  'is_read'      => 0 ,
+                                                  'created_by'   => Auth::user()->id
+
+                                              ]);
+                                return redirect()->back()->with("status", "Report has been submitted");
+
+                          }
+                          return redirect()->back()->with("status", "Report has been submitted");
+
+  }
+public function createReport() {
+
+  return view('memo.createreport');
+
+}
+  public function viewReport() {
+          $usr = Auth::user()->user_type;
+          if($usr =="management") {
+
+            $reports = DB::table('reports')
+                        ->get();
+                        DB::table('reports')
+                              ->update(['is_read' => 1]);
+              return view('memo.reports',compact('reports'));
+
+          }
+          if($usr =="supvervisor") {
+              $reports = DB::tabel('reports')
+                          ->where('user_id',Auth::user()->id)
+                          ->get();
+                return view('memo.reports',compact('reports'));
+
+          }
 
   }
 }
