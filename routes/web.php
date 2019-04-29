@@ -61,6 +61,7 @@ Route::get('news','NewsController@index');
 Route::get('news/create','NewsController@create');
 Route::post('news/create','NewsController@store');
 Route::get('news/{id}','NewsController@show');
+Route::get('news/delete/{id}','NewsController@delete');
 
 
 Route::get('memo/create','MemoController@create');

@@ -102,4 +102,10 @@ class NewsController extends Controller
                 }
               return redirect()->back()->with("status", "Something went wrong");
   }
+  public function delete($id) {
+        DB::table('news')
+              ->where('id',$id)
+              ->delete();
+      return redirect()->back()->with("status", "News has been deleted");
+  }
 }

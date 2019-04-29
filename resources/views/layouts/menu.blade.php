@@ -147,9 +147,11 @@
 							 ?>
 							<a href="#"> <i class="fa fa-comments-o"></i> <span>Reports </span> @if(Auth::user()->user_type =='management')@if($reports > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $reports }}</span> @endif @endif </a>
 							<ul class="down_menu">
+								@if(Auth::user()->user_type =='supervisor')
 								<li class="menu_sub">
 									<a href="{{URL::to('reports/create')}}"> <i class="fa fa-newspaper-o"></i> <span>Create report</span></a>
 								</li>
+								@endif
 										<li class="menu_sub">
 											<a href="{{URL::to('reports')}}"> <i class="fa fa-newspaper-o"></i> <span>Reports </span></a>
 										</li>

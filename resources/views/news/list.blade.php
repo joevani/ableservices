@@ -37,7 +37,7 @@
             </div>
             <div class="col-12 mb-4">
               <div class="card border-none">
-
+                @include('includes.flash')
                 <div class="card-body p-0">
                   @if(count($news) > 0)
                       @foreach($news as $new)
@@ -57,10 +57,12 @@
                             <li class="courses-info__price">
                               <a href="{{URL::to('news/')}}/{{$new->id}}" class="btn btn-success btn-sm" >Read more . .</a>
                             </li>
+                            @if(Auth::user()->user_type =='management')
                             <li>
-                              <!-- <span><i class="fa fa-users txt-warning"></i> 200</span>
-                              <span class="heart_icon"> <i class="fa fa-heart-o"></i></span> -->
+
+                              <span><a href="{{URL::to('news/delete')}}/{{$new->id}}"> <i class="fa fa-trash fa-2x text-danger"></i></a></span>
                             </li>
+                            @endif
                           </ul>
                         </div>
                       </div>
