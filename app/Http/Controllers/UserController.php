@@ -92,7 +92,7 @@ class UserController extends Controller
                                 ->where('supervisor_members.supervisor_userid',$request->input('id'))
                                 ->select('users.*','supervisor_members.id as sv_id')
                                 ->get();
-
+                                
     return response()->json($supersVisorMembers);
   }
   public function teamleadMember(Request $request) {
@@ -136,7 +136,6 @@ class UserController extends Controller
               'teamlead_userid'     => 'required',
               'worker_userid'          => 'required|unique:team_lead_members',
           ]);
-
 
           if ($validator->fails()) {
 
@@ -195,8 +194,9 @@ class UserController extends Controller
   }
 
   public function leaders() {
+
     $users = DB::table('supervisor_members')
-                              ->join('users','supervisor_members.teamlead_userid','=','users.id')
+                          ->join('users','supervisor_members.teamlead_userid','=','users.id')
                               ->where('supervisor_members.supervisor_userid',Auth::user()->id)
                               ->select('users.*','supervisor_members.id as sv_id')
                               ->get();

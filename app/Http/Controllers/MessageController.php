@@ -31,8 +31,12 @@ class MessageController extends Controller
 
     public function inbox() {
         $messages = DB::table('chat')
-                    ->where('to_user',Auth::user()->id)
-                    ->get();
+                          ->join('reply','chat.id','=','reply.ticket_id')
+                          ->where('to_user',Auth::user()->id)
+                          ->orWhere('from_user',Auth::user()->id)
+                          ->select('chat.*','reply.ticket_id','reply.comment','reply.user_id')
+                          ->orderBy('reply.id','desc')
+                          ->get();
           return view('messages.message',compact('messages'));
     }
     /**
@@ -66,8 +70,16 @@ class MessageController extends Controller
                       'to_user'     => $request->input('to_user'),
                       'message'     => $request->input('message'),
                       'status'      => 0
-
               ]);
+              $id = DB::getPdo()->lastInsertId();
+              DB::table('reply')
+                    ->insert([
+                            'ticket_id'   => $id,
+                            'comment'     => $request->input('message') ,
+                            'user_id'     => Auth::user()->id,
+                            'status'      => 0
+                    ]);
+
               return redirect()->back()->with("status", "Message has been sent");
     }
 
@@ -86,6 +98,10 @@ class MessageController extends Controller
                     ->where('id',$id)
                     ->first(['id','message']);
 
+              $chat = DB::table('reply')
+                      ->where('ticket_id',$id)
+                      ->first(['user_id']);
+          
 
           return view('messages.show',compact('replys','message'));
     }
@@ -99,7 +115,8 @@ class MessageController extends Controller
             ->insert([
                     'ticket_id'   => $ticket_id,
                     'comment'     => $comment ,
-                    'user_id'     => Auth::user()->id
+                    'user_id'     => Auth::user()->id ,
+                    'status'      => 0,
             ]);
 
           return redirect()->back()->with("status", "Comment has been sent");

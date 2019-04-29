@@ -48,22 +48,36 @@
                                                               <table id="bs4-table" class="table table-bordered table-striped">
                                                                   <thead>
                                                                     <tr>
-
                                                                       <th>From</th>
                                                                       <th>Message</th>
+
                                                                       <th>Date</th>
                                                                       <th></th>
                                                                     </tr>
                                                                   </thead>
                                                                   <tbody>
                                                                   @foreach ($messages as $inbox)
+                                                                  @if(!empty($inbox->comment))
+                                                                   @if(Auth::user()->id !==$inbox->user_id)
                                                                     <tr>
-                                                                        <td>{{DB::table('users')->where('id',$inbox->from_user)->first(['name'])->name}}</td>
-                                                                        <td>{{$inbox->message}}</td>
+                                                                        <td>
+                                                                              {{DB::table('users')->where('id',$inbox->user_id)->first(['name'])->name}}
+
+                                                                        </td>
+                                                                        <td>
+                                                                          @if(empty($inbox->comment))
+                                                                            <a href="{{URL::to('messages/reply')}}/{{$inbox->id}}" >{{$inbox->message}}</a>
+                                                                          @endif
+                                                                          @if(!empty($inbox->comment))
+                                                                            <a href="{{URL::to('messages/reply')}}/{{$inbox->id}}" >{{$inbox->comment}}</a>
+                                                                          @endif
+                                                                        </td>
+
                                                                         <td>{{date('F d, Y h:s A',strtotime($inbox->created_at))}}</td>
                                                                         <td><a href="{{URL::to('messages/reply')}}/{{$inbox->id}}" class="btn btn-info btn-sm"><i class="fa fa-reply"></i> Reply</a></td>
                                                                     </tr>
-
+                                                                    @endif
+                                                                  @endif
                                                                   @endforeach
                                                                   </tbody>
                                                                 </table>
