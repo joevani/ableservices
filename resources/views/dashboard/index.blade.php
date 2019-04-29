@@ -28,7 +28,7 @@
          <div class="col-12 d-flex flex-wrap plr">
             <div class="fl-col">
             <div class="course_box">
-              <a href="{{URL::to('messages/inbox')}}">
+              <a href="{{URL::to('setup/users')}}">
                 <div class="icon_relative">
                   <i class="la la-users" aria-hidden="true"></i>
                   <span>Users</span>
