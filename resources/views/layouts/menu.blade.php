@@ -70,7 +70,7 @@
 					<li class="menu_sub">
 						<a href="#"> <i class="fa fa-table"></i> <span>Memos </span> @if($mem > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $mem }}</span> @endif </a>
 						<ul class="down_menu">
-						@if(Auth::user()->user_type !="client" || Auth::user()->user_type!="worker")
+						@if(Auth::user()->user_type !="client" || Auth::user()->user_type!="worker" || Auth::user()->user_type!="supervisor")
 							<li>
 								<a href="{{URL::to('memo/create')}}">Create Memo</a>
 							</li>

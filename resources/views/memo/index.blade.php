@@ -42,7 +42,7 @@
                                                             <div class="card-body">
                                                              @include('includes.flash')
                                                               @if (count($memo) == 0)
-                                                          <p>There are currently no issues.</p>
+                                                          <p>There are currently no memos.</p>
                                                             @else
                                                               <table id="bs4-table" class="table table-bordered table-striped">
                                                                 <thead>
