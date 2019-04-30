@@ -40,7 +40,7 @@ class MessageController extends Controller
 
                 DB::table('reply')
                     ->where('user_id',Auth::user()->id)
-                    ->update(['status' => ]);
+                    ->update(['status' => 1 ]);
           return view('messages.message',compact('messages'));
     }
     /**
