@@ -53,6 +53,11 @@
           </li>
 					@if(Auth::user()->user_type !="client")
           <li class="menu_sub">
+							@if(Auth::user()->user_type=='worker')
+									<a href="{{ URL::to('issues')}}"> <i class="fa fa-ticket"></i> <span>Issues/Concerns</span></a>
+							@endif
+
+
 							@if(Auth::user()->user_type=='worker' && Auth::user()->user_type =="team lead")
             	<a href="{{ URL::to('issues')}}"> <i class="fa fa-ticket"></i> <span>Issues/Concerns</span></a>
 							@endif
@@ -97,7 +102,7 @@
               </li>
               <li>
                 <a href="{{URL::to('messages/inbox')}}">	@if($message < 1) @if($chat > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $chat }}</span> @endif @endif
-								 @if($message > 0) <span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $message }}</span> @endif  </a> </a>
+								 @if($message > 0) <span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $message }}</span> @endif   </a>
 								<a href="{{URL::to('messages/sent')}}">Sent </a>
               </li>
             </ul>
