@@ -106,7 +106,7 @@
 
 
                                                                       @endif
-                                                                      @if(Auth::user()->user_type=='worler')
+                                                                      @if(Auth::user()->user_type=='worker')
                                                                             @if($workerteamleaders > 0 )
                                                                                 <option value="{{$user->id}}">{{$user->name}}</option>
                                                                             @endif
