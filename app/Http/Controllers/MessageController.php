@@ -37,6 +37,10 @@ class MessageController extends Controller
                         ->select('chat.*','reply.ticket_id','reply.comment','reply.user_id')
                         ->orderBy('reply.id','desc')
                         ->get();
+
+                DB::table('reply')
+                    ->where('user_id',Auth::user()->id)
+                    ->update(['status' => ]);
           return view('messages.message',compact('messages'));
     }
     /**
