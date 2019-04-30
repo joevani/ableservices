@@ -24,14 +24,10 @@ class TicketsController extends Controller
         if(Auth::user()->user_type=='team lead') {
           $members = [];
 					//
-					$team = DB::table('team_lead_members')
-			                              ->join('users','team_lead_members.worker_userid','=','users.id')
-			                              ->where('team_lead_members.teamlead_userid',Auth::user()->id)
-			                              ->select('users.*','team_lead_members.id as sv_id')
-			                              ->get();
-					//$team = DB::table('team_lead_members')->where('teamlead_userid',Auth::user()->id)->get();
+				
+					$team = DB::table('team_lead_members')->where('teamlead_userid',Auth::user()->id)->get();
 					foreach ($team as $key => $value) {
-											array_push($members,$value->user_id);
+											array_push($members,$value->worker_userid);
 									}
            $tickets    = Ticket::whereIn('user_id',$members)
 													->paginate(10);

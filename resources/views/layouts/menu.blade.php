@@ -59,9 +59,11 @@
 									<a href="{{ URL::to('issues')}}"> <i class="fa fa-ticket"></i> <span>Issues/Concerns</span></a>
 							@endif
 							@if(Auth::user()->user_type=='team lead')
-									<a href="{{ URL::to('issues')}}"> <i class="fa fa-ticket"></i> <span>Issues/Concerns</span></a>
+									<a href="{{ URL::to('issues/list')}}"> <i class="fa fa-ticket"></i> <span>Issues/Concerns</span></a>
 							@endif
-
+							@if(Auth::user()->user_type=='supervisor')
+									<a href="{{ URL::to('issues/list')}}"> <i class="fa fa-ticket"></i> <span>Issues/Concerns</span></a>
+							@endif
 							@if(Auth::user()->user_type=='worker' && Auth::user()->user_type =="team lead")
             	<a href="{{ URL::to('issues')}}"> <i class="fa fa-ticket"></i> <span>Issues/Concerns</span></a>
 							@endif
