@@ -44,7 +44,6 @@
               <li>
                 <a href="{{URL::to('setup/teamleaders')}}">Team Lead Assignment</a>
               </li>
-
             </ul>
           </li>
 					@endif

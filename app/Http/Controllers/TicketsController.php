@@ -28,7 +28,7 @@ class TicketsController extends Controller
 					foreach ($team as $key => $value) {
 											array_push($members,$value->worker_userid);
 									}
-           $tickets    = Ticket::where('type',0)->whereIn('user_id',$members)
+           $tickets    = Ticket::whereIn('user_id',$members)
 													->paginate(10);
            $categories = Category::all();
            return view('tickets.ticketlist', compact('tickets', 'categories'));
@@ -42,7 +42,7 @@ class TicketsController extends Controller
 												$teamMembers = DB::table('team_lead_members')->where('teamlead_userid',$value->teamlead_userid)->first(['worker_userid']);
 													array_push($members,$teamMembers->worker_userid);
 											}
-              $tickets    = Ticket::where('type',0)->whereIn('user_id',$members)->paginate(10);
+              $tickets    = Ticket::whereIn('user_id',$members)->paginate(10);
               $categories = Category::all();
               return view('tickets.ticketlist', compact('tickets', 'categories'));
         }
