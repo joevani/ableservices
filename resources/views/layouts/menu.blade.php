@@ -83,9 +83,14 @@
 					@endif
 					<?php
 						$message = DB::table('reply')->where('user_id',Auth::user()->id)->where('status',0)->count('id');
+						$chat = DB::table('chat')->where('to_user',Auth::user()->id)->count('id');
+
 					 ?>
           <li class="menu_sub">
-            <a href="#"> <i class="fa fa-comments-o"></i> <span>My Messages </span> @if($message > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $message }}</span> @endif  </a>
+            <a href="#"> <i class="fa fa-comments-o"></i> <span>My Messages </span>
+
+								@if($message < 1) @if($chat > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $chat }}</span> @endif @endif
+							 @if($message > 0) <span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $message }}</span> @endif  </a>
             <ul class="down_menu">
               <li>
                 <a href="{{URL::to('messages/create')}}">Create New</a>
