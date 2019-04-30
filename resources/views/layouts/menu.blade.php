@@ -51,9 +51,12 @@
           <li class="menu_sub">
             <a href="{{ URL::to('news')}}"> <i class="fa fa-bullhorn"></i> <span>News/Updates</span></a>
           </li>
-					@if(Auth::user()->user_type !="client")
+
           <li class="menu_sub">
 							@if(Auth::user()->user_type=='worker')
+									<a href="{{ URL::to('issues')}}"> <i class="fa fa-ticket"></i> <span>Issues/Concerns</span></a>
+							@endif
+							@if(Auth::user()->user_type=='client')
 									<a href="{{ URL::to('issues')}}"> <i class="fa fa-ticket"></i> <span>Issues/Concerns</span></a>
 							@endif
 							@if(Auth::user()->user_type=='team lead')
@@ -68,7 +71,7 @@
 							@endif
           </li>
 
-					@endif
+
 
 					@if(Auth::user()->user_type !='client')
 					<?php
