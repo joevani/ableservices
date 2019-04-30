@@ -61,7 +61,7 @@ class MessageController extends Controller
                                       ->select('users.*','team_lead_members.id as sv_id')
                                       ->get();
 
-            return view('messages.create',compact('users'));
+            return view('messages.create',compact('users','usera'));
 
 
     }
