@@ -96,7 +96,8 @@
                 <a href="{{URL::to('messages/create')}}">Create New</a>
               </li>
               <li>
-                <a href="{{URL::to('messages/inbox')}}">Inbox  @if($message > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $message }}</span> @endif  </a>
+                <a href="{{URL::to('messages/inbox')}}">	@if($message < 1) @if($chat > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $chat }}</span> @endif @endif
+								 @if($message > 0) <span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $message }}</span> @endif  </a> </a>
 								<a href="{{URL::to('messages/sent')}}">Sent </a>
               </li>
             </ul>
