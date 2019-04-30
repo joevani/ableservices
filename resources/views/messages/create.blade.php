@@ -73,7 +73,7 @@
                                                                                                     ->where('worker_userid',$user->id)
                                                                                                     ->count('id');
 
-                                                                            $workerteamleaders = DB::table('team_lead_members')
+                                                                        $workerteamleaders = DB::table('team_lead_members')
                                                                                                           ->where('teamlead_userid',$user->id)
                                                                                                           ->where('worker_userid',Auth::user()->id)
                                                                                                           ->count('id');
@@ -107,7 +107,7 @@
 
                                                                       @endif
                                                                       @if(Auth::user()->user_type=='worler')
-                                                                            @if($$workerteamleaders > 0 )
+                                                                            @if($workerteamleaders > 0 )
                                                                                 <option value="{{$user->id}}">{{$user->name}}</option>
                                                                             @endif
 
