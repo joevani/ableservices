@@ -44,7 +44,7 @@
         <div class="col-12">
           <div class="panel profile-cover">
             <div class="profile-cover__img">
-                <img src="{{ asset('capstone/Template/assets/images/')}}/{{Auth::user()->user_pic}}" width="200" height="200" class="img-circle mCS_img_loaded" alt="User Image">
+                <img src="{{ asset('capstone/Template/assets/images/')}}/{{Auth::user()->user_pic}}" width="100" height="100"  alt="User Image">
               <h3 class="h3">{{Auth::user()->name}}</h3>
             </div>
             <div class="profile-cover__action bg--img" data-overlay="0.3"></div>
