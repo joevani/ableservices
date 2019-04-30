@@ -48,6 +48,7 @@
 
             <div class="ticket-info">
               <p>{{ $ticket->title }}</p>
+                <p>{{ $ticket->message }}</p>
               <p>Created on: {{ $ticket->created_at->diffForHumans() }}</p>
             </div>
 
