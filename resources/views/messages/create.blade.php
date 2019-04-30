@@ -107,10 +107,9 @@
 
                                                                       @endif
                                                                       @if(Auth::user()->user_type=='worker')
-                                                                            @if($workerteamleaders > 0 )
-                                                                                <option value="{{$user->id}}">{{$user->name}}</option>
-                                                                            @endif
-
+                                                                            @foreach($usera as $usr)
+                                                                                <option value="{{$usr->id}}">{{$usr->name}}</option>
+                                                                            @endforeach
 
                                                                       @endif
                                                                   @endforeach

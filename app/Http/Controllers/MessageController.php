@@ -55,6 +55,12 @@ class MessageController extends Controller
 
         $users = DB::table('users')->get();
 
+            $usera = DB::table('team_lead_members')
+                                      ->join('users','team_lead_members.teamlead_userid','=','users.id')
+                                      ->where('team_lead_members.worker_userid',Auth::user()->id)
+                                      ->select('users.*','team_lead_members.id as sv_id')
+                                      ->get();
+
             return view('messages.create',compact('users'));
 
 
@@ -93,8 +99,7 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
           $replys  = DB::table('reply')
                   ->where('ticket_id',$id)
                   ->get();
