@@ -205,7 +205,7 @@ class TicketsController extends Controller
 		public function createFeedback()
 		{
 			$categories = Category::all();
-				return view('tickets.createFeedback', compact('categories'));
+				return view('tickets.createfeedback', compact('categories'));
 		}
 
 		public function showFeedback($ticket_id)
