@@ -7,6 +7,9 @@ use Session;
 use DB;
 use Validator;
 use Auth;
+
+use App\User;
+use App\Notifications\Register;
 class FeedbackController extends Controller
 {
   public function __construct(){
@@ -44,6 +47,9 @@ class FeedbackController extends Controller
                           'subject'   => $subject,
                           'content'   => $content
                       ]);
+
+
+              User::find(1)->notify(new Register('New Feedback',$request->input('message')));
 
         return redirect()->back()->with("status", "Feed Submitted");
     }

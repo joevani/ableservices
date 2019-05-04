@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Mailers\AppMailer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use App\Notifications\Register;
 class CommentsController extends Controller
 {
 	/**
@@ -29,6 +31,9 @@ class CommentsController extends Controller
         // if ($comment->ticket->user->id !== Auth::user()->id) {
         // 	$mailer->sendTicketComments($comment->ticket->user, Auth::user(), $comment->ticket, $comment);
         // }
+
+      
+        User::find(1)->notify(new Register('New Feedback',$request->input('message')));
 
         return redirect()->back()->with("status", "Your comment has be submitted.");
     }

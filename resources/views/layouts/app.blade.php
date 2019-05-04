@@ -42,7 +42,7 @@
 	<link href="{{ asset('capstone/Template/assets/css/style.css')}}" rel="stylesheet">
 	<link href="{{ asset('capstone/Template/assets/css/responsive.css')}}" rel="stylesheet">
 
-	
+
 	@yield('styles')
 </head>
 
@@ -81,6 +81,120 @@
 	<script type="text/javascript" src="{{ asset('capstone/Template/assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
 	<script src="{{ asset('capstone/Template/assets/js/custom.js')}}" type="text/javascript"></script>
 	@yield('scripts')
+
+		<!-- <script>
+				$(function() {
+					showNotification();
+					var options = {
+						body: 'Welcome to ABLE Services.', // body part of the notification
+						dir: 'ltr', // use for derection of message
+						image:'/images/icons/192.png' // use for show image
+
+					}
+										var myNotify = new Notification('Titles', options);
+					});
+
+
+					function showNotification() {
+							if(window.Notification) {
+									Notification.requestPermission(function(status) {
+											console.log('Status: ', status); // show notification permission if permission granted then show otherwise message will not show
+								var options = {
+										body: 'Welcome to ABLE Services.', // body part of the notification
+										dir: 'ltr', // use for direction of message
+										image:'/images/icons/192.png' // use for show image
+
+									}
+										var n = new Notification('New Message', options);
+									});
+							}
+							else {
+									alert('Your browser doesn\'t support notifications.');
+							}
+					}
+
+			</script> -->
+
+			<script type="text/javascript">
+
+
+			$(function(){
+							setInterval(getNotificationFeed, 1000);
+							setInterval(getNotificationMessage, 1000);
+							setInterval(getNotificationMemo, 1000);
+
+			});
+
+
+
+				function getNotificationFeed() {
+
+							$.ajax({
+								 type:'GET',
+								 url:'/notification/message',
+								 data:{},
+								 success:function(data){
+									 	if(data.feed > 0) {
+												$('#feed').html(data.feed);
+										}
+										if(data.feeds > 0) {
+												$('#feeds').html(data.feeds);
+										}
+
+								 }
+
+							});
+				}
+
+				function getNotificationMessage() {
+
+							$.ajax({
+								 type:'GET',
+								 url:'/notification/chat',
+								 data:{},
+								 success:function(data){
+										if(data.message < 1) {
+													if(data.chat > 0){
+																$('#chat').html('<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">'+data.chat+'</span>');
+																	$('#chat1').html('<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">'+data.chat+'</span>');
+													}
+
+										}
+										if(data.message > 0) {
+												$('#chat').html('<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">'+data.message+'</span>');
+												$('#chat1').html('<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">'+data.message+'</span>');
+										}
+
+								 }
+
+							});
+				}
+
+				function getNotificationMemo() {
+
+							$.ajax({
+								 type:'GET',
+								 url:'/notification/memo',
+								 data:{},
+								 success:function(data){
+										if(data.memo > 0) {
+												$('#memo').html('	<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">'+data.memo+'</span>');
+												$('#memo1').html('	<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">'+data.memo+'</span>');
+
+
+										}
+
+
+								 }
+
+							});
+				}
+
+
+
+</script>
+
+
 </body>
 
 </html>

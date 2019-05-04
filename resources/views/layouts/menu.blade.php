@@ -79,7 +79,7 @@
 						$mem = DB::table('memo')->where('user_id',Auth::user()->id)->where('is_read',0)->count('id');
 					 ?>
 					<li class="menu_sub">
-						<a href="#"> <i class="fa fa-table"></i> <span>Memos </span> @if($mem > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $mem }}</span> @endif </a>
+						<a href="#"> <i class="fa fa-table"></i> <span>Memos </span> <span id="memo"></span> </a>
 						<ul class="down_menu">
 						@if(Auth::user()->user_type =="management")
 							<li>
@@ -87,7 +87,7 @@
 							</li>
 							@endif
 							<li>
-								<a href="{{URL::to('memo')}}">Memo @if($mem > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $mem }}</span> @endif</a>
+								<a href="{{URL::to('memo')}}">Memo <span id="memo1"></span> </a>
 							</li>
 						</ul>
 					</li>
@@ -100,15 +100,14 @@
           <li class="menu_sub">
             <a href="#"> <i class="fa fa-comments-o"></i> <span>My Messages </span>
 
-								@if($message < 1) @if($chat > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $chat }}</span> @endif @endif
-							 @if($message > 0) <span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $message }}</span> @endif  </a>
+							<span id="chat"></span>
+							</a>
             <ul class="down_menu">
               <li>
                 <a href="{{URL::to('messages/create')}}">Create New</a>
               </li>
               <li>
-                <a href="{{URL::to('messages/inbox')}}">Inbox	@if($message < 1) @if($chat > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $chat }}</span> @endif @endif
-								 @if($message > 0) <span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $message }}</span> @endif   </a>
+                <a href="{{URL::to('messages/inbox')}}">Inbox		<span id="chat1"></span>   </a>
 								<a href="{{URL::to('messages/sent')}}">Sent </a>
               </li>
             </ul>
@@ -135,7 +134,7 @@
 								$feed = DB::table('feedbacks')->where('user_id',Auth::user()->id)->where('is_read',0)->count('id');
 								$feeds = DB::table('feedbacks')->where('is_read',0)->count('id');
 							 ?>
-							<a href="#"> <i class="fa fa-comments-o"></i> <span>Feedbacks </span> @if($feed > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $feed }}</span> @endif </a>
+							<a href="#"> <i class="fa fa-comments-o"></i> <span>Feedbacks </span> <span id="feed" class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__"></span> </a>
 							<ul class="down_menu">
 								@if(Auth::user()->user_type=='client')
 											<li class="menu_sub">
@@ -147,7 +146,7 @@
 									@endif
 									@if(Auth::user()->user_type=='management')
 										<li class="menu_sub">
-											<a href="{{URL::to('feedbacks')}}"> <i class="fa fa-newspaper-o"></i> <span>Client Feedbacks @if($feeds > 0)<span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__">{{ $feeds }}</span> @endif</span></a>
+											<a href="{{URL::to('feedbacks')}}"> <i class="fa fa-newspaper-o"></i> <span>Client Feedbacks <span class="badge badge-pill badge-danger float-right __web-inspector-hide-shortcut__" id="feeds"></span> </span></a>
 										</li>
 								@endif
 

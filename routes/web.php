@@ -97,3 +97,8 @@ Route::get('reports/create','MemoController@createReport');
 
 
 Route::view('offline', 'offline');
+
+
+Route::get('notification/message','NotificationController@getMessage');
+Route::get('notification/chat','NotificationController@getChat');
+Route::get('notification/memo','NotificationController@getMemo');

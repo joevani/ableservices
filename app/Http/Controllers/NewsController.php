@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use DB;
 use Validator;
+use App\User;
+use App\Notifications\Register;
 
 class NewsController extends Controller
 {

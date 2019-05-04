@@ -9,6 +9,8 @@ use Validator;
 use Auth;
 use PDF;
 
+use App\User;
+use App\Notifications\Register;
 class MemoController extends Controller
 {
   public function __construct(){

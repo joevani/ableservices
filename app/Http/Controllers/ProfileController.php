@@ -8,6 +8,8 @@ use Session;
 use DB;
 use Validator;
 use Hash;
+use App\User;
+use App\Notifications\Register;
 
 class ProfileController extends Controller
 {

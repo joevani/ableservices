@@ -9,6 +9,8 @@ use Validator;
 use Hash;
 use Auth;
 
+use App\User;
+use App\Notifications\Register;
 class MessageController extends Controller
 {
 
@@ -61,6 +63,9 @@ class MessageController extends Controller
                                       ->select('users.*','team_lead_members.id as sv_id')
                                       ->get();
 
+
+
+
             return view('messages.create',compact('users','usera'));
 
 
@@ -90,7 +95,10 @@ class MessageController extends Controller
                             'status'      => 0
                     ]);
 
-              return redirect()->back()->with("status", "Message has been sent");
+
+          User::find($request->input('to_user'))->notify(new Register('New Message',$request->input('message')));
+
+          return redirect()->back()->with("status", "Message has been sent");
     }
 
     /**
@@ -126,6 +134,11 @@ class MessageController extends Controller
       $ticket_id = $request->input('ticket_id');
       $comment   = $request->input('comment');
 
+      $user_id   = DB::table('chat')
+                  ->where('id',$ticket_id)
+                  ->first(['to_user'])
+                  ->to_user;
+
       DB::table('reply')
             ->insert([
                     'ticket_id'   => $ticket_id,
@@ -134,7 +147,8 @@ class MessageController extends Controller
                     'status'      => 0,
             ]);
 
-          return redirect()->back()->with("status", "Comment has been sent");
+            User::find($user_id)->notify(new Register('New Message',$request->input('message')));
+        return redirect()->back()->with("status", "Comment has been sent");
 
     }
 

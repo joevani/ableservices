@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use DB;
+
+use App\Notifications\Register;
 class TicketsController extends Controller
 {
 	public function __construct()
@@ -24,7 +26,7 @@ class TicketsController extends Controller
         if(Auth::user()->user_type=='team lead') {
           $members = [];
 					//
-				
+
 					$team = DB::table('team_lead_members')->where('teamlead_userid',Auth::user()->id)->get();
 					foreach ($team as $key => $value) {
 											array_push($members,$value->worker_userid);

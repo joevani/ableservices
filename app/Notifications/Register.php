@@ -16,9 +16,13 @@ class Register extends Notification
      *
      * @return void
      */
-    public function __construct()
+
+    protected $title ;
+    protected $message;
+    public function __construct($title,$message)
     {
-        //
+          $this->title = $title;
+          $this->message = $message;
     }
 
     /**
@@ -29,7 +33,7 @@ class Register extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -52,7 +56,8 @@ class Register extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+              'title'   => $this->title ,
+              'message' => $this->message
         ];
     }
 }

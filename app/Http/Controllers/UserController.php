@@ -8,6 +8,7 @@ use Auth;
 use app\User;
 use Validator;
 use Hash;
+use App\Notifications\Register;
 class UserController extends Controller
 {
   public function __construct()
@@ -92,7 +93,7 @@ class UserController extends Controller
                                 ->where('supervisor_members.supervisor_userid',$request->input('id'))
                                 ->select('users.*','supervisor_members.id as sv_id')
                                 ->get();
-                                
+
     return response()->json($supersVisorMembers);
   }
   public function teamleadMember(Request $request) {
