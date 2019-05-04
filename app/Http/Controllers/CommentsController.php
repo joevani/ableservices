@@ -32,8 +32,8 @@ class CommentsController extends Controller
         // 	$mailer->sendTicketComments($comment->ticket->user, Auth::user(), $comment->ticket, $comment);
         // }
 
-      
-        User::find(1)->notify(new Register('New Feedback',$request->input('message')));
+
+        // User::find(1)->notify(new Register('New Feedback',$request->input('message')));
 
         return redirect()->back()->with("status", "Your comment has be submitted.");
     }

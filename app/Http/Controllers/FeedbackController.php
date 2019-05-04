@@ -49,7 +49,7 @@ class FeedbackController extends Controller
                       ]);
 
 
-              User::find(1)->notify(new Register('New Feedback',$request->input('message')));
+              // User::find(1)->notify(new Register('New Feedback',$request->input('message')));
 
         return redirect()->back()->with("status", "Feed Submitted");
     }
