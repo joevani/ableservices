@@ -213,10 +213,10 @@ class ProfileController extends Controller
                                                 'password'    => $password,
                                                 'company'    => $company
                                     ]);
-                                  $request->session()->put('message', 'Added Employee with password');
+                                  $request->session()->put('status', 'Added Employee with password');
                                   $request->session()->put('password', $plain_password);
 
-                    return redirect()->back()->with(["statuss" => "Added Employee with password ",'passwords' =>  $plain_password ] );
+                    return redirect()->back()->with(["status" => "Added Employee with password ",'password' =>  $plain_password ] );
                 }
               return redirect()->back()->with(["status" => "Something went wrong" ]);
     }
