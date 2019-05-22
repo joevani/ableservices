@@ -1,9 +1,9 @@
 
-@if (Session::get('status'))
+@if (session('status'))
     <div class="alert alert-success">
-        {{ Session::get('status') }}
-        @if(Session::get('password'))
-            <p class="text-danger">{{Session::get('password')}}</p>
+        {{ session('status') }}
+        @if(session('password'))
+            <p class="text-danger">{{session('password')}}</p>
         @endif
     </div>
 @endif
@@ -11,7 +11,6 @@
 @if (session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
-
 
     </div>
 @endif
