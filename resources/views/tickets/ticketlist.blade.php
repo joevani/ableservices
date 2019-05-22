@@ -75,9 +75,11 @@
                                                                     </td>
                                                                     <td>
                                                                     @if ($ticket->status === 'Open')
+                                                                      <span class="label label-info">{{ $ticket->status }}</span>
+                                                                    @else if($ticket->status === 'Solved')
                                                                       <span class="label label-success">{{ $ticket->status }}</span>
                                                                     @else
-                                                                      <span class="label label-danger">{{ $ticket->status }}</span>
+                                                                        <span class="label label-danger">{{ $ticket->status }}</span>
                                                                     @endif
                                                                     </td>
                                                                     <td>{{DB::table('users')->where('id',$ticket->user_id)->first(['name'])->name}}</td>

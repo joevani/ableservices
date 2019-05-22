@@ -88,7 +88,7 @@ class ProfileController extends Controller
                                                 'address'     => $address,
                                                 'password'    => $password
                                     ]);
-                                    return redirect()->back()->with(["status" => "Added Employee with password ",'password' =>  $plain_password ] );
+                    return redirect()->back()->with(["status" => "Added Employee with password ",'password' =>  $plain_password ] );
                 }
               return redirect()->back()->with("status", "Something went wrong");
     }
@@ -213,9 +213,9 @@ class ProfileController extends Controller
                                                 'password'    => $password,
                                                 'company'    => $company
                                     ]);
-                      return redirect()->back()->with(["status" => "Added Employee with password ",'password' =>  $plain_password ] );
+                    return redirect()->back()->with(["status" => "Added Employee with password ",'password' =>  $plain_password ] );
                 }
-              return redirect()->back()->with("status", "Something went wrong");
+              return redirect()->back()->with(["status" => "Something went wrong" ]);
     }
     public function showClient($id)
     {
