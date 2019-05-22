@@ -76,7 +76,7 @@
                                                                     <td>
                                                                     @if ($ticket->status === 'Open')
                                                                       <span class="label label-info">{{ $ticket->status }}</span>
-                                                                    @else if($ticket->status === 'Solved')
+                                                                    @elseif($ticket->status === 'Solved')
                                                                       <span class="label label-success">{{ $ticket->status }}</span>
                                                                     @else
                                                                         <span class="label label-danger">{{ $ticket->status }}</span>
