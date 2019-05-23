@@ -41,32 +41,33 @@
                                                   </div>
                                                   <div class="card-body">
                                                     @include('includes.flash')
-                                                  
+                                                    @include('includes.flashmessage')
                                                       @if ( $errors->any() )
                                                                @foreach ($errors->all() as $error)
                                                                 <div class="alert alert-danger">{{$error}}</div>
                                                               @endforeach
                                                       @endif
-                                                      <form class="form-horizontal" role="form" method="POST" action="{{ url('/setup/users/create') }}" enctype="multipart/form-data">
+                                                      <form class="form-horizontal" role="form" method="POST" action="{{ url('/setup/users/store') }}" enctype="multipart/form-data">
                                                      {!! csrf_field() !!}
                                                      <div class="input-group">
                                                         <div class="input-group-prepend">
                                                           <span class="input-group-text" id="inputGroupFileAddon01">Profile Pic</span>
                                                         </div>
                                                         <div class="custom-file">
-                                                          <input type="file" class="custom-file-input" name="photo" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                          <input name="photo" type="file" class="form-control" >
                                                           <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                                         </div>
                                                       </div>
                                                       <hr>
                                                      <div class="form-group">
                                                           <label>Username</label>
-                                                          <input type="text" class="form-control" name="username">
+                                                          <input type="text" class="form-control"  name="username">
                                                      </div>
                                                      <div class="form-group">
                                                           <label>Fullname</label>
-                                                          <input type="text" class="form-control" name="name">
+                                                          <input  name="name" type="text" class="form-control">
                                                      </div>
+
                                                      <div class="form-group">
                                                           <label>Email</label>
                                                           <input type="email" class="form-control" name="email">

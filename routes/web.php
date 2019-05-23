@@ -6,7 +6,7 @@ Route::get('dashboard', 'DashboardController@index');
 Route::get('/home', 'DashboardController@index')->name('home');
 Route::get('setup/users', 'ProfileController@index');
 Route::get('setup/users/create', 'ProfileController@create');
-Route::post('setup/users/create', 'ProfileController@store');
+Route::post('setup/users/store', 'ProfileController@store');
 Route::get('setup/employee/{id}', 'ProfileController@show');
 Route::post('setup/users/update', 'ProfileController@update');
 Route::post('user/login','AuthController@postLogin');

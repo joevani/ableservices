@@ -61,7 +61,7 @@
                                                      <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                                          <label for="title" class="col-md-4 control-label">Subject</label>
 
-                                                             <input id="title" type="text" class="form-control" name="subject" value="{{ old('title') }}">
+                                                             <input id="title" type="text" class="form-control" name="subject" value="">
 
                                                              @if ($errors->has('title'))
                                                                  <span class="help-block">
