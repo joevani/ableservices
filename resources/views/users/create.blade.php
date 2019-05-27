@@ -49,14 +49,18 @@
                                                       @endif
                                                       <form class="form-horizontal" role="form" method="POST" action="{{ url('/setup/users/store') }}" enctype="multipart/form-data">
                                                      {!! csrf_field() !!}
-                                                     <div class="input-group">
+                                                     <!-- <div class="input-group">
                                                         <div class="input-group-prepend">
                                                           <span class="input-group-text" id="inputGroupFileAddon01">Profile Pic</span>
                                                         </div>
                                                         <div class="custom-file">
-                                                          <input name="photo" type="file" class="form-control" >
+                                                          <input  type="file" name="photo" class="form-control" >
                                                           <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                                         </div>
+                                                      </div> -->
+                                                      <div class="form-group">
+                                                           <label>Profile Pic</label>
+                                                           <input type="file" class="form-control"  name="photo">
                                                       </div>
                                                       <hr>
                                                      <div class="form-group">
